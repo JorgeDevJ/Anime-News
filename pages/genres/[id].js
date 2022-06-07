@@ -1,39 +1,41 @@
 import { useState, useEffect } from "react";
-import IndexLayaut from "./layaut/IndexLayaut";
-import { movieApi } from "../services/api/movieApi";
-import CardMovie from "../components/CardMovie";
+import IndexLayaut from "../layaut/IndexLayaut";
+import CardMovie from "../../components/CardMovie";
 import {DotPulse } from "@uiball/loaders";
-import GridCard from "../components/GridCard";
+import { useRouter } from "next/router";
 import styled from "styled-components";
+import { movieApi } from "../../services/api/movieApi";
+import GridCard from "../../components/GridCard";
 const LoaderCont = styled.div`
   display: flex;
   justify-content: center;
   margin: 20rem 0;
 `;
-export default function Home() {
-  const [data, setData] = useState([]);
+const NameAnime = () => {
+  const [movies, setMovies] = useState([]);
   const [loader, setLoader] = useState(false);
-
-  const getData = async () => {
+  const { query } = useRouter();
+  const GetMovie = async () => {
     try {
       setLoader(true);
-      const { data } = await movieApi.get("/trending/movie/week", {
+      const { data } = await movieApi.get("/discover/movie", {
         params: {
-          page: 1,
+          with_genres: query.id,
         },
       });
       const response = data.results;
       setLoader(false);
-      setData(response);
+      setMovies(response);
     } catch (error) {
+      setLoader(true);
       console.log(error);
     }
   };
   useEffect(() => {
-    getData();
-  }, []);
+    GetMovie();
+  }, [query.id]);
   return (
-    <IndexLayaut title={"Trending"}>
+    <IndexLayaut title={query.id}>
       {loader ? (
         <LoaderCont>
           <DotPulse size={80} lineWeight={5} speed={1.75} color="var(--text)" />
@@ -41,7 +43,7 @@ export default function Home() {
       ) : (
         <GridCard>
 
-          {data.map(({ title, vote_average, id, poster_path }) => {
+          {movies.map(({ title, vote_average, id, poster_path }) => {
             return (
               <CardMovie
                 key={id}
@@ -53,7 +55,8 @@ export default function Home() {
           })}
         </GridCard>
       )}
-      
     </IndexLayaut>
   );
-}
+};
+
+export default NameAnime;

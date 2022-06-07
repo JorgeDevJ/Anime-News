@@ -1,41 +1,42 @@
-import { useState, useEffect } from "react";
-import IndexLayaut from "./layaut/IndexLayaut";
-import { movieApi } from "../services/api/movieApi";
-import CardMovie from "../components/CardMovie";
+import { useEffect, useState } from "react";
+import IndexLayaut from "../layaut/IndexLayaut";
+import { useRouter } from "next/router";
+import { movieApi } from "../../services/api/movieApi";
 import {DotPulse } from "@uiball/loaders";
-import GridCard from "../components/GridCard";
+import CardMovie from "../../components/CardMovie";
 import styled from "styled-components";
+import GridCard from "../../components/GridCard";
 const LoaderCont = styled.div`
   display: flex;
   justify-content: center;
   margin: 20rem 0;
 `;
-export default function Home() {
+const NameMovie = () => {
+  const router = useRouter();
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
-
-  const getData = async () => {
+  const GetMovieSearch = async () => {
     try {
-      setLoader(true);
-      const { data } = await movieApi.get("/trending/movie/week", {
+        setLoader(true);
+      const { data } = await movieApi.get("/search/multi", {
         params: {
-          page: 1,
+          query: router.query.name,
+          include_adult: true,
         },
       });
       const response = data.results;
       setLoader(false);
-      setData(response);
+      setData(response)
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(() => {
-    getData();
-  }, []);
-  return (
-    <IndexLayaut title={"Trending"}>
+  useEffect(()=>{
+      GetMovieSearch()
+    },[router.query.name])
+  return <IndexLayaut title={router.query.name} >
       {loader ? (
-        <LoaderCont>
+        <LoaderCont title={router.query.name}>
           <DotPulse size={80} lineWeight={5} speed={1.75} color="var(--text)" />
         </LoaderCont>
       ) : (
@@ -53,7 +54,7 @@ export default function Home() {
           })}
         </GridCard>
       )}
-      
-    </IndexLayaut>
-  );
-}
+  </IndexLayaut>;
+};
+
+export default NameMovie;
