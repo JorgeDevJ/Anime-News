@@ -34,6 +34,6 @@ export const GlobalStyle = createGlobalStyle`
   img{
     max-width: 100% !important;
     height: auto !important;
-    object-fit: contain !important;
+    object-fit: cover !important;
   }
 `;
