@@ -36,13 +36,13 @@ const Title = styled.h2``;
 const RatingData = styled.span``;
 ////////
 const urlImage = "https://image.tmdb.org/t/p/w500/";
-const CardMovie = ({ nameMovie, srcImage, vote, id }) => {
+const CardMovie = ({ nameMovie, srcImage, vote, id, name }) => {
   return (
     <ContainerCard>
       <Cont>
       <Image
         className="image"
-        src={srcImage === null ? NotFound : `${urlImage}${srcImage}`}
+        src={srcImage === null || srcImage === undefined ? NotFound : `${urlImage}${srcImage}`}
         alt={nameMovie}
         width={500}
         height={750}
@@ -50,9 +50,8 @@ const CardMovie = ({ nameMovie, srcImage, vote, id }) => {
         blurDataURL
       />
       <InfoMovie>
-        <Title>{nameMovie}</Title>
+        <Title>{nameMovie === undefined ? name : nameMovie}</Title>
         <RatingData>{vote}</RatingData>
-        
       </InfoMovie>
       </Cont>
     </ContainerCard>
@@ -61,8 +60,9 @@ const CardMovie = ({ nameMovie, srcImage, vote, id }) => {
 
 CardMovie.propTypes = {
   nameMovie: PropTypes.string,
+  name: PropTypes.string,
   srcImage: PropTypes.string,
-  vote: PropTypes.string,
+  vote: PropTypes.number,
   id: PropTypes.number,
 };
 
