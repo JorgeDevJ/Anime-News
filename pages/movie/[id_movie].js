@@ -32,7 +32,7 @@ text-align: center; */
 } */
   border: 1.5px solid var(--primary);
   .imageCast {
-    border-radius: 100px;
+    clip-path: circle(50%);
   }
 `;
 const ContainTitle = styled.div`
@@ -43,6 +43,7 @@ const ContainTitle = styled.div`
 `;
 const Title = styled.h1`
   font-size: 23px;
+  text-align: center;
 `;
 const IdMovie = () => {
   const [movie, setMovie] = useState([]);
