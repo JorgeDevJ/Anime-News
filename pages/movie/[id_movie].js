@@ -15,6 +15,7 @@ const Container = styled.main`
   color: var(--text);
   .image {
     border-radius: 10px;
+    border: 1px solid var(--primary) !important;
   }
 `;
 const Card = styled(SplideSlide)`
@@ -39,10 +40,10 @@ const ContainTitle = styled.div`
   align-items: center;
   justify-content: center;
   margin: 10px 0 0 0;
-`
+`;
 const Title = styled.h1`
   font-size: 23px;
-`
+`;
 const IdMovie = () => {
   const [movie, setMovie] = useState([]);
   const [cast, setCast] = useState([]);
@@ -95,16 +96,22 @@ const IdMovie = () => {
           width="500"
           height="750"
           className="image"
+          placeholder="blur"
+          blurDataURL
         />
         <div>
           <ContainTitle>
             <Title>{title} </Title>
-            
           </ContainTitle>
 
           <CategoriesItems>
             {genres === undefined ? (
-              <DotPulse size={80} lineWeight={5} speed={1.75} color="var(--text)" />
+              <DotPulse
+                size={80}
+                lineWeight={5}
+                speed={1.75}
+                color="var(--text)"
+              />
             ) : (
               genres.map(({ id, name }) => {
                 return (
@@ -131,6 +138,8 @@ const IdMovie = () => {
                     width="55"
                     height="55"
                     className="imageCast"
+                    placeholder="blur"
+                    blurDataURL
                   />
                 </Card>
               );

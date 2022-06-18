@@ -50,6 +50,7 @@ const NameAnime = () => {
                 nameMovie={title}
                 vote={vote_average}
                 srcImage={poster_path}
+                id={id}
               />
             );
           })}

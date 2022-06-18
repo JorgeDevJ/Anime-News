@@ -50,6 +50,7 @@ const NameMovie = () => {
                 vote={vote_average}
                 srcImage={poster_path}
                 name={name}
+                id={id}
               />
             );
           })}
