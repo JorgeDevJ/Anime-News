@@ -2,21 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import Image from "next/dist/client/image";
 import styled from "styled-components";
-import NotFound from '../public/notfound.jpg'
+import NotFound from "../public/notfound.jpg";
+import Link from "next/link";
 //style
 
 const ContainerCard = styled.div`
-@media(max-width: 650px){
-  margin: 0 0 2rem 0;
-}
+  @media (max-width: 650px) {
+    margin: 0 0 2rem 0;
+  }
   display: flex;
 `;
 const Cont = styled.div`
-position: relative;
+  position: relative;
   .image {
     border-radius: 10px;
   }
-`
+`;
 const InfoMovie = styled.div`
   color: var(--text);
   opacity: 0;
@@ -35,24 +36,36 @@ const InfoMovie = styled.div`
 const Title = styled.h2``;
 const RatingData = styled.span``;
 ////////
-const urlImage = "https://image.tmdb.org/t/p/w500/";
+export const urlImage = "https://image.tmdb.org/t/p/w500/";
 const CardMovie = ({ nameMovie, srcImage, vote, id, name }) => {
   return (
     <ContainerCard>
       <Cont>
-      <Image
-        className="image"
-        src={srcImage === null || srcImage === undefined ? NotFound : `${urlImage}${srcImage}`}
-        alt={nameMovie}
-        width={500}
-        height={750}
-        placeholder="blur"
-        blurDataURL
-      />
-      <InfoMovie>
-        <Title>{nameMovie === undefined ? name : nameMovie}</Title>
-        <RatingData>{vote}</RatingData>
-      </InfoMovie>
+        <Link href={`/movie/${id}`} >
+          <a>
+            <Image
+              className="image"
+              src={
+                srcImage === null || srcImage === undefined
+                  ? NotFound
+                  : `${urlImage}${srcImage}`
+              }
+              alt={nameMovie}
+              width={500}
+              height={750}
+              placeholder="blur"
+              blurDataURL
+            />
+          </a>
+        </Link>
+        <InfoMovie>
+          <Link href={`/movie/${id}`}>
+            <a>
+              <Title>{nameMovie === undefined ? name : nameMovie}</Title>
+            </a>
+          </Link>
+          <RatingData>{vote}</RatingData>
+        </InfoMovie>
       </Cont>
     </ContainerCard>
   );

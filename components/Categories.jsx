@@ -7,14 +7,14 @@ import Search from "./Search";
 import LazyLoad from "react-lazyload";
 //style
 const ContainerCat = styled.div`
-  margin: 2rem;
+  margin: 3rem 2rem 2rem 2rem;
 `;
 const TextPresent = styled.h1`
   color: var(--text);
   font-size: 35px;
   margin: 0 0 15px 0;
 `;
-const List = styled(SplideSlide)`
+export const List = styled(SplideSlide)`
   background-color: var(--primary);
   
   display: flex;
@@ -22,20 +22,16 @@ const List = styled(SplideSlide)`
   padding: 1rem 2rem;
   font-size: 22px;
   text-align: center;
-  border-radius: 8px;
+  border-radius: 100px;
   margin: 15px 0;
   & > a{
     color: var(--text);
     font-weight: 500;
   }
 `;
-
-const Categories = () => {
-  return (
-    <ContainerCat>
-      <TextPresent>Search Content</TextPresent>
-      <Search />
-      <Splide
+export const CategoriesItems = ({children})=>{
+  return(
+    <Splide
         options={{
           rewind: true,
           gap: "10px",
@@ -45,7 +41,17 @@ const Categories = () => {
           fixedWidth: "auto",
         }}
       >
-        {genres.map(({ id, name }) => {
+        {children}
+      </Splide>
+  )
+}
+const Categories = () => {
+  return (
+    <ContainerCat>
+      <TextPresent>Search Content</TextPresent>
+      <Search />
+      <CategoriesItems>
+      {genres.map(({ id, name }) => {
           return (
             <List key={id}>
               <Link href={`/genres/${id}`}>
@@ -54,7 +60,7 @@ const Categories = () => {
             </List>
           );
         })}
-      </Splide>
+      </CategoriesItems>
     </ContainerCat>
   );
 };
