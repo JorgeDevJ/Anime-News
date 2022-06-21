@@ -42,7 +42,7 @@ const NameMovie = () => {
       ) : (
         <GridCard>
 
-          {data.map(({ name, title, vote_average, id, poster_path }) => {
+          {data.map(({ name, title, vote_average, id, poster_path, media_type }) => {
             return (
               <CardMovie
                 key={id}
@@ -51,6 +51,7 @@ const NameMovie = () => {
                 srcImage={poster_path}
                 name={name}
                 id={id}
+                type={media_type}
               />
             );
           })}

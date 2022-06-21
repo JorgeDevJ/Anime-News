@@ -43,7 +43,7 @@ const NameAnime = () => {
       ) : (
         <GridCard>
 
-          {movies.map(({ title, vote_average, id, poster_path }) => {
+          {movies.map(({ title, vote_average, id, poster_path, media_type }) => {
             return (
               <CardMovie
                 key={id}
@@ -51,6 +51,7 @@ const NameAnime = () => {
                 vote={vote_average}
                 srcImage={poster_path}
                 id={id}
+                type={"movie"}
               />
             );
           })}

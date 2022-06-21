@@ -37,11 +37,11 @@ const Title = styled.h2``;
 const RatingData = styled.span``;
 ////////
 export const urlImage = "https://image.tmdb.org/t/p/w500/";
-const CardMovie = ({ nameMovie, srcImage, vote, id, name }) => {
+const CardMovie = ({ nameMovie, srcImage, vote, id, name, type }) => {
   return (
     <ContainerCard>
       <Cont>
-        <Link href={`/movie/${id}`} >
+        <Link href={`/${type}/${id}`} >
           <a>
             <Image
               className="image"
@@ -59,7 +59,7 @@ const CardMovie = ({ nameMovie, srcImage, vote, id, name }) => {
           </a>
         </Link>
         <InfoMovie>
-          <Link href={`/movie/${id}`}>
+          <Link href={`/${type}/${id}`}>
             <a>
               <Title>{nameMovie === undefined ? name : nameMovie}</Title>
             </a>

@@ -40,7 +40,7 @@ export default function Home() {
         </LoaderCont>
       ) : (
         <GridCard>
-          {data.map(({ name, title, vote_average, id, poster_path }) => {
+          {data.map(({ name, title, vote_average, id, poster_path, media_type }) => {
             return (
               <CardMovie
                 key={id}
@@ -49,6 +49,7 @@ export default function Home() {
                 srcImage={poster_path}
                 name={name}
                 id={id}
+                type={media_type}
               />
             );
           })}
