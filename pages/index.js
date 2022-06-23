@@ -1,4 +1,3 @@
-
 import IndexLayaut from "./layaut/IndexLayaut";
 import { DotPulse } from "@uiball/loaders";
 import styled from "styled-components";
@@ -11,9 +10,7 @@ const LoaderCont = styled.div`
   justify-content: center;
   margin: 20rem 0;
 `;
-const Cont = styled.div`
-  padding: 0 var(--padding-separate-lr);
-`;
+
 export default function Home() {
   return (
     <IndexLayaut title={"Trending"}>
@@ -29,20 +26,4 @@ export default function Home() {
   /* <LoaderCont>
           <DotPulse size={80} lineWeight={5} speed={1.75} color="var(--text)" />
         </LoaderCont> */
-}
-
-{
-  /* {data.map(({ name, title, vote_average, id, poster_path, media_type }) => {
-            return (
-              <CardMovie
-                key={id}
-                nameMovie={title}
-                vote={vote_average}
-                srcImage={poster_path}
-                name={name}
-                id={id}
-                type={media_type}
-              />
-            );
-          })} */
 }
