@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import IndexLayaut from "../layaut/IndexLayaut";
-import CardMovie from "../../components/CardMovie";
+
 import {DotPulse } from "@uiball/loaders";
 import { useRouter } from "next/router";
 import styled from "styled-components";
@@ -43,7 +43,7 @@ const NameAnime = () => {
       ) : (
         <GridCard>
 
-          {movies.map(({ title, vote_average, id, poster_path, media_type }) => {
+         {/*  {movies.map(({ title, vote_average, id, poster_path, media_type }) => {
             return (
               <CardMovie
                 key={id}
@@ -54,7 +54,7 @@ const NameAnime = () => {
                 type={"movie"}
               />
             );
-          })}
+          })} */}
         </GridCard>
       )}
     </IndexLayaut>

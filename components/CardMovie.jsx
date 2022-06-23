@@ -1,47 +1,45 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Image from "next/dist/client/image";
+import Image from "next/image";
 import styled from "styled-components";
-import NotFound from "../public/notfound.jpg";
+import NotFound from "../public/notfound.jpg"
 import Link from "next/link";
 //style
 
 const ContainerCard = styled.div`
-  @media (max-width: 650px) {
-    margin: 0 0 2rem 0;
-  }
+  
   display: flex;
 `;
 const Cont = styled.div`
-  position: relative;
+  
   .image {
     border-radius: 10px;
   }
 `;
 const InfoMovie = styled.div`
   color: var(--text);
-  opacity: 0;
-  position: absolute;
-  bottom: 0px;
-  padding: 2rem;
-  width: 100%;
-  border-radius: 0 0 10px 10px;
-  transition: background ease-in-out 0.1s;
-  ${ContainerCard}:hover & {
-    opacity: 1;
-    background-color: var(--primary);
-    color: var(--text-dark);
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+
 `;
-const Title = styled.h2``;
-const RatingData = styled.span``;
+const Title = styled.h3`
+  font-size: 15px;
+`;
+const RatingData = styled.span`
+  color: var(--color-medium);
+  font-weight: 600;
+  display: flex;
+  font-size: 15px;
+  align-items:center;
+`;
 ////////
 export const urlImage = "https://image.tmdb.org/t/p/w500/";
 const CardMovie = ({ nameMovie, srcImage, vote, id, name, type }) => {
   return (
     <ContainerCard>
       <Cont>
-        <Link href={`/${type}/${id}`} >
+        <Link href="#" >
           <a>
             <Image
               className="image"
@@ -59,12 +57,15 @@ const CardMovie = ({ nameMovie, srcImage, vote, id, name, type }) => {
           </a>
         </Link>
         <InfoMovie>
-          <Link href={`/${type}/${id}`}>
+          <Link href="#">
             <a>
               <Title>{nameMovie === undefined ? name : nameMovie}</Title>
             </a>
           </Link>
-          <RatingData>{vote}</RatingData>
+          <RatingData>{vote} <i className='bx bxs-star' style={{
+              color: "var(--color-medium)",
+              fontSize: 15,
+            }}></i></RatingData>
         </InfoMovie>
       </Cont>
     </ContainerCard>

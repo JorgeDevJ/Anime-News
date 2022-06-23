@@ -1,8 +1,9 @@
 import React from "react";
 import Head from "next/dist/shared/lib/head";
 import Categories from "../../components/Categories";
-import Search from "../../components/Search";
 import Return from "../../components/Return";
+import NavStart from "../../components/Nav/NavStart";
+
 const IndexLayaut = ({ children, title }) => {
   return (
     <>
@@ -12,8 +13,7 @@ const IndexLayaut = ({ children, title }) => {
         <link rel="icon" href="/favicon.ico" />
         <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'></link>
       </Head>
-      <Return/>
-      <Categories/>
+      <NavStart/>
       {children}
     </>
   );

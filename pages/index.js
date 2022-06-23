@@ -1,46 +1,38 @@
-import { useState, useEffect } from "react";
+
 import IndexLayaut from "./layaut/IndexLayaut";
-import { movieApi } from "../services/api/movieApi";
-import CardMovie from "../components/CardMovie";
 import { DotPulse } from "@uiball/loaders";
-import GridCard from "../components/GridCard";
 import styled from "styled-components";
+import Trending from "../components/Sections/Trending";
+import Popular from "../components/Sections/Popular";
+import TopRated from "../components/Sections/TopRated";
+import Upcoming from "../components/Sections/Upcoming";
 const LoaderCont = styled.div`
   display: flex;
   justify-content: center;
   margin: 20rem 0;
 `;
+const Cont = styled.div`
+  padding: 0 var(--padding-separate-lr);
+`;
 export default function Home() {
-  const [data, setData] = useState([]);
-  const [loader, setLoader] = useState(false);
-
-  const getData = async () => {
-    try {
-      setLoader(true);
-      const { data } = await movieApi.get("/trending/movie/week", {
-        params: {
-          page: 1,
-        },
-      });
-      const response = data.results;
-      setLoader(false);
-      setData(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getData();
-  }, []);
   return (
     <IndexLayaut title={"Trending"}>
-      {loader ? (
-        <LoaderCont>
+      <Trending/>
+      <Popular/>
+      <TopRated/>
+      <Upcoming/>
+    </IndexLayaut>
+  );
+}
+
+{
+  /* <LoaderCont>
           <DotPulse size={80} lineWeight={5} speed={1.75} color="var(--text)" />
-        </LoaderCont>
-      ) : (
-        <GridCard>
-          {data.map(({ name, title, vote_average, id, poster_path, media_type }) => {
+        </LoaderCont> */
+}
+
+{
+  /* {data.map(({ name, title, vote_average, id, poster_path, media_type }) => {
             return (
               <CardMovie
                 key={id}
@@ -52,9 +44,5 @@ export default function Home() {
                 type={media_type}
               />
             );
-          })}
-        </GridCard>
-      )}
-    </IndexLayaut>
-  );
+          })} */
 }

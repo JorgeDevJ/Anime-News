@@ -3,7 +3,7 @@ import IndexLayaut from "../layaut/IndexLayaut";
 import { useRouter } from "next/router";
 import { movieApi } from "../../services/api/movieApi";
 import {DotPulse } from "@uiball/loaders";
-import CardMovie from "../../components/CardMovie";
+
 import styled from "styled-components";
 import GridCard from "../../components/GridCard";
 const LoaderCont = styled.div`
@@ -42,7 +42,7 @@ const NameMovie = () => {
       ) : (
         <GridCard>
 
-          {data.map(({ name, title, vote_average, id, poster_path, media_type }) => {
+         {/*  {data.map(({ name, title, vote_average, id, poster_path, media_type }) => {
             return (
               <CardMovie
                 key={id}
@@ -54,7 +54,7 @@ const NameMovie = () => {
                 type={media_type}
               />
             );
-          })}
+          })} */}
         </GridCard>
       )}
   </IndexLayaut>;
