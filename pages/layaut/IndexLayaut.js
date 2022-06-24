@@ -1,7 +1,5 @@
 import React from "react";
 import Head from "next/dist/shared/lib/head";
-import Categories from "../../components/Categories";
-import Return from "../../components/Return";
 import NavStart from "../../components/Nav/NavStart";
 import Footer from "../../components/Footer";
 

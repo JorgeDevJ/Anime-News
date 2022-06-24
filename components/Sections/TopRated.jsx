@@ -28,7 +28,8 @@ const TopRated = () => {
                     nameMovie={title}
                     srcImage={poster_path}
                     vote={vote_average}
-                    type={media_type}
+                    type={"movie"}
+                    id={id}
                   />
                 </List>
               );

@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 export const useGetExactMovie = () => {
   /*get movie data */
   const [movie, setMovie] = useState([]);
+  const [videos, setVideos] = useState([]);
   const [cast, setCast] = useState([]);
   const { query } = useRouter();
   const getMovieDta = async () => {
@@ -11,7 +12,15 @@ export const useGetExactMovie = () => {
       const { data } = await movieApi.get(`/movie/${query.id_movie}`);
       const result = data;
       setMovie(result);
-      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const getMovieVideos = async () => {
+    try {
+      const { data } = await movieApi.get(`/movie/${query.id_movie}/videos`);
+      const result = data.results;
+      setVideos(result);
     } catch (error) {
       console.log(error);
     }
@@ -28,8 +37,10 @@ export const useGetExactMovie = () => {
   useEffect(() => {
     getMovieDta();
     getCreditsDta();
+    getMovieVideos()
   }, [query.id_movie]);
+  
   /*get movie data */
 
-  return[movie, cast]
+  return[movie, cast, videos]
 };

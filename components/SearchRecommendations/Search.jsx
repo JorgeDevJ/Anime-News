@@ -79,7 +79,7 @@ box-shadow: var(--shadow-list);
       <ContainerRecommendation visible={value === "" ? "none" : "block"}>
       {data.map(({name, title, vote_average, id, poster_path, media_type})=>{
         return(
-          <CardItemRecor key={id} name={name} image={poster_path} />
+          <CardItemRecor key={id} name={name} title={title} image={poster_path} media_type={media_type} id={id} />
         )
       })}
       </ContainerRecommendation>

@@ -25,13 +25,15 @@ const InfoMovie = styled.div`
 `;
 const Title = styled.h3`
   font-size: 15px;
+  color: var(--text-dark);
 `;
-const RatingData = styled.span`
+export const RatingData = styled.span`
   color: var(--color-medium);
   font-weight: 600;
   display: flex;
   font-size: 15px;
   align-items:center;
+  margin: ${props => props.margin};
 `;
 ////////
 export const urlImage = "https://image.tmdb.org/t/p/w500/";
@@ -39,7 +41,7 @@ const CardMovie = ({ nameMovie, srcImage, vote, id, name, type }) => {
   return (
     <ContainerCard>
       <Cont>
-        <Link href="#" >
+        <Link href={`/${type}/${id}`} >
           <a>
             <Image
               className="image"
@@ -57,7 +59,7 @@ const CardMovie = ({ nameMovie, srcImage, vote, id, name, type }) => {
           </a>
         </Link>
         <InfoMovie>
-          <Link href="#">
+          <Link href={`/${type}/${id}`}>
             <a>
               <Title>{nameMovie === undefined ? name : nameMovie}</Title>
             </a>

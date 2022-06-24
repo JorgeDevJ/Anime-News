@@ -26,6 +26,8 @@ const Trending = () => {
               name={name}
               nameMovie={title}
               srcImage={backdrop_path}
+              id={id}
+              type={"movie"}
             />
           );
         })}

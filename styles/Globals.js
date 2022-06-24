@@ -47,7 +47,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   a{
     text-decoration: none;
-    color: var(--text-dark);
+    color: var(--text);
   }
 li{
   list-style: none;

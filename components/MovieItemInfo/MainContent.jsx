@@ -8,26 +8,9 @@ import { DotPulse } from "@uiball/loaders";
 import styled from "styled-components";
 import Actor from "./Actor";
 const Container = styled.main`
-  margin: 3rem;
-  color: var(--text);
-  .image {
-    border-radius: 10px;
-    border: 1px solid var(--primary) !important;
-  }
-  display: flex; 
-  flex-direction: column;
+  
 `;
 
-const ContainTitle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 10px 0 0 0;
-`;
-const Title = styled.h1`
-  font-size: 23px;
-  text-align: center;
-`;
 const SectionContainer = styled.section``;
 const MainContent = ({ poster_path, title, genres, overview, cast }) => {
   return (
@@ -41,13 +24,13 @@ const MainContent = ({ poster_path, title, genres, overview, cast }) => {
         placeholder="blur"
         blurDataURL
       />
-      <SectionContainer>
-        <div>
-          <ContainTitle>
-            <Title>{title} </Title>
-          </ContainTitle>
+    </Container>
+  );
+};
 
-          <CategoriesItems>
+export default MainContent;
+
+          {/* <CategoriesItems>
             {genres === undefined ? (
               <DotPulse
                 size={80}
@@ -66,16 +49,4 @@ const MainContent = ({ poster_path, title, genres, overview, cast }) => {
                 );
               })
             )}
-          </CategoriesItems>
-        </div>
-        <p>{overview}</p>
-        <div>
-          <h2>Cast</h2>
-          <Actor cast={cast} />
-        </div>
-      </SectionContainer>
-    </Container>
-  );
-};
-
-export default MainContent;
+          </CategoriesItems> */}

@@ -9,6 +9,7 @@ const ContainerFooter = styled.footer`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 2rem 0 0 0;
   & > span {
     color: var(--text);
     margin: 0 0 15px 0;
