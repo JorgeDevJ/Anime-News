@@ -13,7 +13,8 @@ export const List = styled(SplideSlide)`
 const Recommendations = ({id, type}) => {
   const [data, loader] = useGeneralData(`/${type}/${id}/recommendations`, id);
   return (
-    <Section>
+    <>
+    {data.total_results !== 0 ? <Section>
       <div className="titleSection">
         <h2>
           Recommendations
@@ -42,7 +43,9 @@ const Recommendations = ({id, type}) => {
           )}
         </CategoriesItems>
       </div>
-    </Section>
+    </Section> : null}
+    
+    </>
   );
 };
 

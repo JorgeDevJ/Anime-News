@@ -22,11 +22,13 @@ const Card = styled(SplideSlide)`
     color: var(--text-dark);
     font-weight: 500;
   }
+  
 `;
 
 const Actor = ({ cast }) => {
   return (
     <CategoriesItems>
+      
       {cast.map(({ name, profile_path, id, character }) => {
         return (
           <Card key={id}>

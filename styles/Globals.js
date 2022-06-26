@@ -58,4 +58,12 @@ li{
     height: auto !important;
     object-fit: cover !important;
   }
+  .linkImage {
+    height: 350px !important;
+    width: 236px !important;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+  }
 `;

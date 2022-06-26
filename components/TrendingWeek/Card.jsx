@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlImage } from "../CardMovie";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { LoaderCard } from "../CardMovie";
 import styled from "styled-components";
 const ContainerCard = styled.div`
   position: absolute;
@@ -31,55 +32,62 @@ const List = styled(SplideSlide)`
 `;
 const ButtonWatch = styled.button`
   background-color: var(--primary);
-  display: flex;
+  
   border: none;
   outline: none;
-  justify-content: center;
   padding: 6px 11px;
   font-size: 14px;
   text-align: center;
   border-radius: 100px;
   color: var(--text);
   margin: 5px 0 0 0;
-  align-items: center;
+  &>a{
+    display: flex;
+  }
 `;
-const Card = ({ nameMovie, srcImage, vote, id, name, type }) => {
+const Card = ({ nameMovie, srcImage, vote, id, name, type, loader }) => {
   return (
     <List>
-      <Link href={`/${type}/${id}`}>
-        <a>
-          <Image
-            className="image"
-            src={`${urlImage}${srcImage}`}
-            alt={name}
-            width={338}
-            height={174}
-            placeholder="blur"
-            blurDataURL
-          />
-        </a>
-      </Link>
-      <ContainerCard>
-        <Link href={`/${type}/${id}`}>
-          <a>
-            <h3>{nameMovie}</h3>
-          </a>
-        </Link>
-        <ButtonWatch>
+      {loader ? (
+        <LoaderCard />
+      ) : (
+        <>
           <Link href={`/${type}/${id}`}>
             <a>
-              <i
-                className="bx bx-play"
-                style={{
-                  color: "var(--text)",
-                  fontSize: 17,
-                }}
-              ></i>
-              Watch
+              <Image
+                className="image"
+                src={`${urlImage}${srcImage}`}
+                alt={name}
+                width={338}
+                height={174}
+                placeholder="blur"
+                blurDataURL
+              />
             </a>
           </Link>
-        </ButtonWatch>
-      </ContainerCard>
+          <ContainerCard>
+            <Link href={`/${type}/${id}`}>
+              <a>
+                <h3>{nameMovie}</h3>
+              </a>
+            </Link>
+            <ButtonWatch>
+              <Link href={`/${type}/${id}`}>
+                <a>
+                  <i
+                    className="bx bx-play"
+                    style={{
+                      color: "var(--text)",
+                      fontSize: 17,
+                    }}
+                  ></i>
+                  Watch
+                </a>
+              </Link>
+            </ButtonWatch>
+          </ContainerCard>
+        </>
+      )}
     </List>
   );
 };

@@ -47,7 +47,12 @@ const Categories = () => {
       {genres.map(({ id, name }) => {
           return (
             <List key={id}>
-              <Link href={`/genres/${id}`}>
+              <Link href={{
+                pathname: "/with_genres/movie/genres",
+                query: {
+                  gen: id
+                }
+              }}>
                 <a>{name}</a>
               </Link>
             </List>

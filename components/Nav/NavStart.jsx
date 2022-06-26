@@ -35,7 +35,7 @@ const ContainerListMobile = styled.div`
 const Li = styled.li`
   font-weight: 500;
   font-size: 25px;
-  &>a{
+  & > a {
     color: var(--text-dark);
   }
 `;
@@ -53,36 +53,25 @@ const NavStart = () => {
       <ContainerNav>
         <div>
           <Link href="/">
-          <a>
-
-          <Icon className="bx bxs-cube bx-lg" size="6rem"></Icon>
-          </a>
+            <a>
+              <Icon className="bx bxs-cube bx-lg" size="6rem"></Icon>
+            </a>
           </Link>
           <ContainerListMobile visible={activeMenu ? "unset" : "none"}>
             <ul>
               <Li>
-                <Link href={"#"}>
+                <Link href={"/"}>
                   <a>All</a>
                 </Link>
               </Li>
               <Li>
-                <Link href={"#"}>
+                <Link href={"/movies"}>
                   <a>Movies</a>
                 </Link>
               </Li>
               <Li>
-                <Link href={"#"}>
+                <Link href={"/series"}>
                   <a>Series</a>
-                </Link>
-              </Li>
-              <Li>
-                <Link href={"#"}>
-                  <a>Tv Shows</a>
-                </Link>
-              </Li>
-              <Li>
-                <Link href={"#"}>
-                  <a>Cartoons</a>
                 </Link>
               </Li>
             </ul>

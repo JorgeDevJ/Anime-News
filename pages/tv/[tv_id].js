@@ -29,7 +29,8 @@ const ContImage = styled.div`
   }
 `;
 const ContTitleData = styled.div`
-  & > h1, h2 {
+  & > h1,
+  h2 {
     font-weight: 300;
   }
   & > h2 {
@@ -81,7 +82,7 @@ const IdMovie = () => {
     vote_average,
     episode_run_time,
     original_title,
-    id
+    id,
   } = tv;
 
   return (
@@ -106,9 +107,7 @@ const IdMovie = () => {
           <h1>{name}</h1>
           <ContTitleAndRuntime>
             <span className="titleOriginal">{original_name} </span>
-            <span className="runtime">
-              {number_of_episodes} Episodes
-            </span>
+            <span className="runtime">{number_of_episodes} Episodes</span>
           </ContTitleAndRuntime>
           <span>{overview}</span>
           <h2>Genres</h2>
@@ -124,7 +123,14 @@ const IdMovie = () => {
               genres.map(({ id, name }) => {
                 return (
                   <List key={id}>
-                    <Link href={`/genres/${id}`}>
+                    <Link
+                      href={{
+                        pathname: '/with_genres/tv/genres',
+                        query: {
+                          gen: id,
+                        },
+                      }}
+                    >
                       <a>{name}</a>
                     </Link>
                   </List>
@@ -132,12 +138,11 @@ const IdMovie = () => {
               })
             )}
           </CategoriesItems>
-
         </ContTitleData>
         <h2>Cast</h2>
-        <Actor cast={cast}/>
+        <Actor cast={cast} />
       </ContainerMain>
-      <Recommendations type="tv" id={query.tv_id}/>
+      <Recommendations type="tv" id={query.tv_id} />
     </IndexLayaut>
   );
 };

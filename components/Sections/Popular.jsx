@@ -52,6 +52,7 @@ const Popular = () => {
                     vote={vote_average}
                     type={"movie"}
                     id={id}
+                    loader={loader}
                   />
                 </List>
               );

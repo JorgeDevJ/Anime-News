@@ -5,15 +5,15 @@ import { movieApi } from "../../services/api/movieApi";
 import CardItemRecor from "./CardItemRecor";
 import { DotPulse } from "@uiball/loaders";
 const Container = styled.form`
-width: 100%;
-position: fixed;
-z-index: 10000;
-/* background: rgba(43, 43, 43, 0.42);
+  width: 100%;
+  position: fixed;
+  z-index: 10000;
+  /* background: rgba(43, 43, 43, 0.42);
   backdrop-filter: blur(3px); */
   padding: 0 var(--padding-separate-lr) 85vh;
-    top: 85px;
-    display: ${(props) => props.visibleSearch};
-    `;
+  top: 85px;
+  display: ${(props) => props.visibleSearch};
+`;
 const Input = styled.input`
 width: 100%;
 box-shadow: var(--shadow-list);
@@ -32,7 +32,7 @@ box-shadow: var(--shadow-list);
   }
   }
   `;
-  const ContainerRecommendation = styled.div`
+const ContainerRecommendation = styled.div`
   display: ${(props) => props.visible};
   box-shadow: var(--shadow-list);
   margin: 1rem 0;
@@ -40,19 +40,19 @@ box-shadow: var(--shadow-list);
   border-radius: 10px;
   line-height: 30px;
   background: var(--bg);
-  `;
-  const Search = ({valuebool, fun}) => {
-    const [data, setData] = useState([]);
+`;
+const Search = ({ valuebool, fun }) => {
+  const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
   const [value, setValue] = useState();
   const router = useRouter();
   const SearchData = (e) => {
     const query = e.target.value;
-    setValue(query)
+    setValue(query);
   };
   const GetMovieSearch = async () => {
     try {
-        setLoader(true);
+      setLoader(true);
       const { data } = await movieApi.get("/search/multi", {
         params: {
           query: value,
@@ -61,30 +61,42 @@ box-shadow: var(--shadow-list);
       });
       const response = data.results;
       setLoader(false);
-      setData(response)
+      setData(response);
     } catch (error) {
       console.log(error);
     }
   };
-  useEffect(()=>{
-    GetMovieSearch()
-  },[value])
+  useEffect(() => {
+    GetMovieSearch();
+  }, [value]);
   return (
-    <Container visibleSearch={valuebool ? "block" : "none"} onSubmit={(e) => e.preventDefault()}>
+    <Container
+      visibleSearch={valuebool ? "block" : "none"}
+      onSubmit={(e) => e.preventDefault()}
+    >
       <Input
         onChange={SearchData}
         type={"text"}
         placeholder="Search movies and series"
+        autoFocus
       />
       <ContainerRecommendation visible={value === "" ? "none" : "block"}>
-      {data.map(({name, title, vote_average, id, poster_path, media_type})=>{
-        return(
-          <CardItemRecor key={id} name={name} title={title} image={poster_path} media_type={media_type} id={id} />
-        )
-      })}
+        {data.map(
+          ({ name, title, vote_average, id, poster_path, media_type }) => {
+            return (
+              <CardItemRecor
+                key={id}
+                name={name}
+                title={title}
+                image={poster_path}
+                media_type={media_type}
+                id={id}
+              />
+            );
+          }
+        )}
       </ContainerRecommendation>
     </Container>
-
   );
 };
 

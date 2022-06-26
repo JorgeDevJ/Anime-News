@@ -28,6 +28,7 @@ const Trending = () => {
               srcImage={backdrop_path}
               id={id}
               type={"movie"}
+              loader={loader}
             />
           );
         })}

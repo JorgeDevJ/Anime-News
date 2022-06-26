@@ -13,11 +13,11 @@ const LoaderCont = styled.div`
 
 export default function Home() {
   return (
-    <IndexLayaut title={"Trending"}>
-      <Trending/>
-      <Popular/>
-      <TopRated/>
-      <Upcoming/>
+    <IndexLayaut title={"Home"}>
+      <Trending />
+      <Popular />
+      <TopRated />
+      <Upcoming />
     </IndexLayaut>
   );
 }

@@ -3,7 +3,7 @@ import IndexLayaut from "../layaut/IndexLayaut";
 import { useGetExactMovie } from "../../hooks/useGetExactMovie";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { urlImage } from "../../components/CardMovie";
+import { LoaderCard, urlImage } from "../../components/CardMovie";
 import styled from "styled-components";
 import RatingMain from "../../components/MovieItemInfo/Rating";
 import { CategoriesItems, List } from "../../components/Categories";
@@ -64,7 +64,7 @@ const Button = styled.button`
   margin: 0;
 `;
 const IdMovie = () => {
-  const [movie, cast, videos] = useGetExactMovie();
+  const [movie, cast, loader] = useGetExactMovie();
   const [isOpen, setOpen] = useState(false);
   const { query } = useRouter();
   const {
@@ -84,9 +84,10 @@ const IdMovie = () => {
 
   return (
     <IndexLayaut title={title}>
+      
       <ContainerMain>
         {/* image */}
-        <ContImage>
+         <ContImage>
           <Image
             src={`${urlImage}${poster_path}`}
             alt={title}
@@ -98,6 +99,7 @@ const IdMovie = () => {
           />
           <RatingMain value={vote_average} />
         </ContImage>
+       
         {/* image */}
         {/* info */}
         <ContTitleData>
@@ -122,7 +124,12 @@ const IdMovie = () => {
               genres.map(({ id, name }) => {
                 return (
                   <List key={id}>
-                    <Link href={`/genres/${id}`}>
+                    <Link  href={{
+                        pathname: '/with_genres/movie/genres',
+                        query: {
+                          gen: id,
+                        },
+                      }}>
                       <a>{name}</a>
                     </Link>
                   </List>
