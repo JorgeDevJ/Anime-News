@@ -5,7 +5,7 @@ import IndexLayaut from "./layaut/IndexLayaut";
 const Movies = () => {
   return (
     <IndexLayaut title="Movies">
-      <DataWithFilter path={"/movies"} url={"/discover/movie"} title={"Movies"}/>
+      <DataWithFilter path={"/movies"} url={"/discover/movie"} title={"Movies"} type={"movie"} />
     </IndexLayaut>
   );
 };
