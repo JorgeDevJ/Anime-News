@@ -20,13 +20,18 @@ export const Grid = styled.div`
   grid-column-gap: 15px;
   grid-row-gap: 10px;
 `;
-const options = [
+const optionsMovie = [
   { value: "popularity.desc", label: "Popularity" },
   { value: "vote_average.desc", label: "Vote Average" },
   { value: "realease_date.desc", label: "Release Date" },
   { value: "original_title.desc", label: "Original Title" },
   { value: "vote_count_desc", label: "Vote Count" },
 ];
+const optionsTv = [
+    { value: "popularity.desc", label: "Popularity" },
+    { value: "first_air_date.desc", label: "First Air Date" },
+    { value: "vote_count_desc", label: "Vote Count" },
+  ];
 const DataWithFilter = ({title, url, path, type}) => {
   const [selectedValue, setSelectedValue] = useState();
   const router = useRouter();
@@ -47,7 +52,7 @@ const DataWithFilter = ({title, url, path, type}) => {
         <h1>{title}</h1>
         <Select
           isSearchable={false}
-          options={options}
+          options={type === "movie" ? optionsMovie : optionsTv}
           onChange={handleChange}
         />
       </TitleSelect>
