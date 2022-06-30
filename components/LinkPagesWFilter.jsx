@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useGeneralData } from "../hooks/useGetDataGeneral";
 import CardMovie from "./CardMovie";
@@ -20,6 +20,22 @@ export const Grid = styled.div`
   grid-column-gap: 15px;
   grid-row-gap: 10px;
 `;
+const Button = styled.button`
+  outline: none;
+  border: none;
+  background-color: var(--primary);
+  color: var(--text);
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  font-size: 16px;
+  display: ${props => props.visible};
+  margin: ${props => props.margin};
+`;
+const ContainerButtons = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px 0;
+`;
 const optionsMovie = [
   { value: "popularity.desc", label: "Popularity" },
   { value: "vote_average.desc", label: "Vote Average" },
@@ -28,23 +44,28 @@ const optionsMovie = [
   { value: "vote_count_desc", label: "Vote Count" },
 ];
 const optionsTv = [
-    { value: "popularity.desc", label: "Popularity" },
-    { value: "first_air_date.desc", label: "First Air Date" },
-    { value: "vote_count_desc", label: "Vote Count" },
-  ];
-const DataWithFilter = ({title, url, path, type}) => {
-  const [selectedValue, setSelectedValue] = useState();
+  { value: "popularity.desc", label: "Popularity" },
+  { value: "first_air_date.desc", label: "First Air Date" },
+  { value: "vote_count_desc", label: "Vote Count" },
+];
+const DataWithFilter = ({ title, url, path, type }) => {
+  const [selectedValue, setSelectedValue] = useState("popularity.desc");
+  const [page, setPage] = useState(1);
   const router = useRouter();
   const handleChange = (e) => {
     setSelectedValue(e.value);
+    setPage(1);
+  };
+  useEffect(() => {
     router.push({
       pathname: path,
       query: {
-        sort: e.value,
-        gen: router.query.gen
+        sort: selectedValue,
+        gen: router.query.gen,
+        page_index: page,
       },
     });
-  };
+  }, [page, selectedValue, router.query.gen]);
   const [data, loader] = useGeneralData(url, selectedValue);
   return (
     <Container>
@@ -56,6 +77,10 @@ const DataWithFilter = ({title, url, path, type}) => {
           onChange={handleChange}
         />
       </TitleSelect>
+      <ContainerButtons>
+        <Button visible={page === 1 ? "none" : "block"} margin="0 1rem 0 0" onClick={() => setPage(page - 1)}>Page {page - 1}</Button>
+        <Button onClick={() => setPage(page + 1)}>Page {page + 1} </Button>
+      </ContainerButtons>
       <Grid>
         {data.map(
           ({ name, title, poster_path, id, media_type, vote_average }) => {

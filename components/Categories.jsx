@@ -11,7 +11,6 @@ const ContainerCat = styled.div`
 `;
 export const List = styled(SplideSlide)`
   background-color: var(--primary);
-  
   display: flex;
   justify-content: center;
   padding: 1rem 2rem;

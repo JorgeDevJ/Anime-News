@@ -21,29 +21,12 @@ export const useGeneralData = (url, id, sort) => {
       console.log(error);
     }
   };
-  const filterData = async () => {
-    try {
-      setLoader(true);
-      const { data } = await movieApi.get(url, {
-        params: {
-          page: 1,
-          sort_by: query.sort,
-          include_adult: true,
-        },
-      });
-      const response = data.results;
-      setData(response);
-      setLoader(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const filterDataGenres = async () => {
     try {
       setLoader(true);
       const { data } = await movieApi.get(url, {
         params: {
-          page: 1,
+          page: query.page_index,
           sort_by: query.sort,
           include_adult: true,
           with_genres: query.gen
@@ -88,12 +71,8 @@ export const useGeneralData = (url, id, sort) => {
     getData();
   }, []);
   useEffect(() => {
-    filterData();
-  }, [query.sort]);
-  useEffect(() => {
     filterDataGenres();
-    console.log(data)
-  }, [query.sort, query.gen]);
+  }, [query.sort, query.gen, query.page_index]);
   useEffect(() => {
     RecommendationMovie()
     PersonData()

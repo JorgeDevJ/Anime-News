@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
+import { useWindowSize } from "../../hooks/useWindows";
 import styled from "styled-components";
 import Link from "next/link";
 import Switch from "./Switch";
 import Categories, { CategoriesItems } from "../Categories";
 import Search from "../SearchRecommendations/Search";
+import NavMobile from "./NavMobile";
 const ContainerNav = styled.nav`
   padding: 15px var(--padding-separate-lr);
   display: flex;
@@ -43,62 +45,70 @@ const Li = styled.li`
 const NavStart = () => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [activeSearch, setActiveSearch] = useState(false);
-
+  const {width} = useWindowSize()
   useEffect(() => {
     setActiveMenu(false);
     setActiveSearch(false);
   }, []);
+
+  /*comp desk */
+  const NavDesk = () =>{
+    return(
+      <ContainerNav>
+      <div>
+        <Link href="/">
+          <a>
+            <Icon className="bx bxs-cube bx-lg" size="6rem"></Icon>
+          </a>
+        </Link>
+        <ContainerListMobile visible={activeMenu ? "unset" : "none"}>
+          <ul>
+            <Li>
+              <Link href={"/"}>
+                <a>All</a>
+              </Link>
+            </Li>
+            <Li>
+              <Link href={"/movies"}>
+                <a>Movies</a>
+              </Link>
+            </Li>
+            <Li>
+              <Link href={"/series"}>
+                <a>Series</a>
+              </Link>
+            </Li>
+          </ul>
+          <Categories />
+        </ContainerListMobile>
+      </div>
+      <ContItems>
+        {/*deberia ir un switch */}
+        <Icon
+          onClick={() => {
+            setActiveSearch(!activeSearch);
+            setActiveMenu(false);
+          }}
+          size="4rem"
+          margin="0 1rem 0 0"
+          className="bx bx-search"
+        ></Icon>
+        <Icon
+          onClick={() => {
+            setActiveMenu(!activeMenu);
+            setActiveSearch(false);
+          }}
+          size="4rem"
+          className="bx bx-menu-alt-right"
+        ></Icon>
+      </ContItems>
+    </ContainerNav>
+    )
+  }
   return (
     <>
-      <ContainerNav>
-        <div>
-          <Link href="/">
-            <a>
-              <Icon className="bx bxs-cube bx-lg" size="6rem"></Icon>
-            </a>
-          </Link>
-          <ContainerListMobile visible={activeMenu ? "unset" : "none"}>
-            <ul>
-              <Li>
-                <Link href={"/"}>
-                  <a>All</a>
-                </Link>
-              </Li>
-              <Li>
-                <Link href={"/movies"}>
-                  <a>Movies</a>
-                </Link>
-              </Li>
-              <Li>
-                <Link href={"/series"}>
-                  <a>Series</a>
-                </Link>
-              </Li>
-            </ul>
-            <Categories />
-          </ContainerListMobile>
-        </div>
-        <ContItems>
-          {/*deberia ir un switch */}
-          <Icon
-            onClick={() => {
-              setActiveSearch(!activeSearch);
-              setActiveMenu(false);
-            }}
-            size="4rem"
-            margin="0 1rem 0 0"
-            className="bx bx-search"
-          ></Icon>
-          <Icon
-            onClick={() => {
-              setActiveMenu(!activeMenu);
-              setActiveSearch(false);
-            }}
-            size="4rem"
-            className="bx bx-menu-alt-right"
-          ></Icon>
-        </ContItems>
-      </ContainerNav>
+    {width >= 800 ? <NavMobile/> : <NavDesk/>}
+     
       <Search valuebool={activeSearch} />
     </>
   );
