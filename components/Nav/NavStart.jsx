@@ -102,6 +102,7 @@ const NavStart = () => {
           className="bx bx-menu-alt-right"
         ></Icon>
       </ContItems>
+      <Search valuebool={activeSearch} />
     </ContainerNav>
     )
   }
@@ -109,7 +110,6 @@ const NavStart = () => {
     <>
     {width >= 800 ? <NavMobile/> : <NavDesk/>}
      
-      <Search valuebool={activeSearch} />
     </>
   );
 };

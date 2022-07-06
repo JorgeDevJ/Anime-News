@@ -29,7 +29,7 @@ export const useGeneralData = (url, id, sort) => {
           page: query.page_index,
           sort_by: query.sort,
           include_adult: true,
-          with_genres: query.gen
+          with_genres: query.gen,
         },
       });
       const response = data.results;
@@ -45,6 +45,7 @@ export const useGeneralData = (url, id, sort) => {
       const { data } = await movieApi.get(url, {
         params: {
           page: 1,
+          include_adult: true,
         },
       });
       const response = data.results;

@@ -66,6 +66,7 @@ const CardMovie = ({ nameMovie, srcImage, vote, id, name, type, loader, directio
                 height={750}
                 placeholder="blur"
                 blurDataURL
+                priority
               />
             </a>
           </Link>

@@ -17,10 +17,9 @@ const TitleSelect = styled.div`
 export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 15px;
-  grid-row-gap: 10px;
-  @media(max-width: 400px){
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
+  @media(max-width: 300px){
     grid-template-columns: repeat(1,1fr);
   }
   @media(min-width: 900px){

@@ -11,59 +11,11 @@ import Link from "next/link";
 import { DotPulse } from "@uiball/loaders";
 import Actor from "../../components/MovieItemInfo/Actor";
 import Recommendations from "../../components/MovieItemInfo/Recommendation";
-const ContainerMain = styled.main`
-  padding: 0 var(--padding-separate-lr);
-  & > h2 {
-    font-weight: 300;
-    margin: 1rem 0 0 0;
-  }
-`;
-const ContImage = styled.div`
-  margin: 0 7rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .image {
-    border-radius: 10px;
-  }
-`;
-const ContTitleData = styled.div`
-  & > h1,
-  h2 {
-    font-weight: 300;
-  }
-  & > h2 {
-    margin: 1rem 0 1rem 0;
-  }
-`;
-const ContTitleAndRuntime = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 1rem 0;
-  .titleOriginal {
-    font-weight: 600;
-  }
-  .runtime {
-    color: var(--color-medium);
-    font-weight: 500;
-  }
-`;
-const Button = styled.button`
-  background-color: var(--primary);
-  border: none;
-  outlin: none;
-  color: var(--text);
-  font-weight: 400;
-  font-family: var(--karla);
-  display: flex;
-  align-items: center;
-  padding: 7px 15px;
-  font-size: 22px;
-  text-align: center;
-  border-radius: 100px;
-  margin: 0;
-`;
+import { ContainerMain } from "../movie/[id_movie]";
+import { ContImage } from "../movie/[id_movie]";
+import { ContTitleData } from "../movie/[id_movie]";
+import { ContTitleAndRuntime } from "../movie/[id_movie]";
+import { ContainerActors } from "../movie/[id_movie]";
 const IdMovie = () => {
   const [tv, cast] = useGetExactTV();
   const [isOpen, setOpen] = useState(false);
@@ -138,9 +90,12 @@ const IdMovie = () => {
               })
             )}
           </CategoriesItems>
-        </ContTitleData>
+          <ContainerActors>
         <h2>Cast</h2>
-        <Actor cast={cast} />
+        <Actor cast={cast}/>
+        </ContainerActors>
+        </ContTitleData>
+        
       </ContainerMain>
       <Recommendations type="tv" id={query.tv_id} />
     </IndexLayaut>

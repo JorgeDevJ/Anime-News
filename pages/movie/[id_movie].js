@@ -11,7 +11,7 @@ import Link from "next/link";
 import { DotPulse } from "@uiball/loaders";
 import Actor from "../../components/MovieItemInfo/Actor";
 import Recommendations from "../../components/MovieItemInfo/Recommendation";
-const ContainerMain = styled.main`
+export const ContainerMain = styled.main`
   padding: 0 var(--padding-separate-lr);
   h2 {
     font-weight: 300;
@@ -24,7 +24,7 @@ const ContainerMain = styled.main`
     
   }
 `;
-const ContImage = styled.div`
+export const ContImage = styled.div`
   margin: 0 7rem;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ const ContImage = styled.div`
     margin: 0 2rem;
   }
 `;
-const ContTitleData = styled.div`
+export const ContTitleData = styled.div`
 @media(min-width: 990px){
   width: 50%;
 }
@@ -53,7 +53,7 @@ const ContTitleData = styled.div`
     margin: 1rem 0 1rem 0;
   }
 `;
-const ContTitleAndRuntime = styled.div`
+export const ContTitleAndRuntime = styled.div`
   display: flex;
   flex-direction: column;
   margin: 1rem 0;
@@ -65,7 +65,7 @@ const ContTitleAndRuntime = styled.div`
     font-weight: 500;
   }
 `;
-const ContainerActors = styled.div`
+export const ContainerActors = styled.div`
 @media(min-width: 990px){
   display: block;
 }

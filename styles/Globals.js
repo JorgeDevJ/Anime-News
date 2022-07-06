@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     --border-mobile: 10px;
     --shadow-card: 0px 500px 449px rgba(0, 0, 0, 0.1), 0px 208.888px 187.581px rgba(0, 0, 0, 0.0718854), 0px 111.682px 100.29px rgba(0, 0, 0, 0.0596107), 0px 62.6078px 56.2218px rgba(0, 0, 0, 0.05), 0px 33.2505px 29.859px rgba(0, 0, 0, 0.0403893), 0px 13.8363px 12.425px rgba(0, 0, 0, 0.0281146);
     --shadow-cat: 0px 14px 239px rgba(0, 0, 0, 0.13), 0px 6.47262px 110.497px rgba(0, 0, 0, 0.0964178), 0px 3.70349px 63.2238px rgba(0, 0, 0, 0.0814815), 0px 2.24799px 38.3764px rgba(0, 0, 0, 0.0701933), 0px 1.35451px 23.1235px rgba(0, 0, 0, 0.0598067), 0px 0.754281px 12.8766px rgba(0, 0, 0, 0.0485185), 0px 0.324411px 5.53816px rgba(0, 0, 0, 0.0335822);
-    --filter-bg: ${(props) => props.filter};
+    --shadow-gen: 0px 14px 239px rgba(0, 0, 0, 0.13), 0px 6.47262px 110.497px rgba(0, 0, 0, 0.0964178), 0px 3.70349px 63.2238px rgba(0, 0, 0, 0.0814815), 0px 2.24799px 38.3764px rgba(0, 0, 0, 0.0701933), 0px 1.35451px 23.1235px rgba(0, 0, 0, 0.0598067), 0px 0.754281px 12.8766px rgba(0, 0, 0, 0.0485185), 0px 0.324411px 5.53816px rgba(0, 0, 0, 0.0335822);
     --opacity-bg: ${(props) => props.opacity};
     --shadow-list: 0px 0px 3.8px rgba(0, 0, 0, 0.022),
     0px 0px 9.6px rgba(0, 0, 0, 0.031),

@@ -3,7 +3,8 @@ import { useWindowSize } from "../../hooks/useWindows";
 import styled from "styled-components";
 import Link from "next/link";
 import Switch from "./Switch";
-import Categories, { CategoriesItems } from "../Categories";
+import { genres } from "../../services/data/genres";
+
 import Search from "../SearchRecommendations/Search";
 const ContainerNav = styled.nav`
   padding: 15px var(--padding-separate-lr);
@@ -28,6 +29,7 @@ const Li = styled.li`
   font-weight: 500;
   font-size: 25px;
   margin: 0 1rem 0 0;
+  cursor: pointer;
   & > a {
     color: var(--text-dark);
   }
@@ -35,15 +37,47 @@ const Li = styled.li`
 const ContLinks = styled.div`
   display: flex;
   align-items: center;
-`
+  position: relative;
+`;
+const GenresContainer = styled.div`
+  position: absolute;
+  /* height: 9rem; */
+  display: ${(props) => props.visible};
+  flex-wrap: wrap;
+  width: 60rem;
+  z-index: 1000;
+  /* height: 17rem; */
+  background: var(--bg);
+  box-shadow: var(--shadow-gen);
+  padding: 10px 15px;
+  line-height: 32px;
+  border-radius: 10px;
+  top: 63px;
+`;
+const List = styled.div`
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 22px;
+  text-align: center;
+  border-radius: 100px;
+  margin: 10px 10px 10px 0;
+  & > a {
+    color: var(--text);
+    font-weight: 500;
+  }
+`;
 //data Links
 const NavMobile = () => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [activeSearch, setActiveSearch] = useState(false);
-  const {width} = useWindowSize()
+  const [activeGen, setActiveGen] = useState(false);
+  const { width } = useWindowSize();
   useEffect(() => {
     setActiveMenu(false);
     setActiveSearch(false);
+    setActiveGen(false);
   }, []);
   return (
     <>
@@ -71,14 +105,41 @@ const NavMobile = () => {
                   <a>Series</a>
                 </Link>
               </Li>
-              <Li className="listcat">
-                  <a>Categories</a>
-                  <i className='bx bxs-down-arrow' style={{
+              <Li
+                className="listcat"
+                onClick={() => {
+                  setActiveGen(!activeGen);
+                  setActiveMenu(false);
+                  setActiveSearch(false);
+                }}
+              >
+                <a>Categories</a>
+                <i
+                  className="bx bxs-down-arrow"
+                  style={{
                     color: "var(--text-dark)",
-                    fontSize: 16
-                  }}  ></i>
-                <div>
-                </div>
+                    fontSize: 16,
+                    margin: "0 0 0 5px"
+                  }}
+                ></i>
+                <GenresContainer visible={activeGen ? "flex" : "none"}>
+                  {genres.map(({ id, name }) => {
+                    return (
+                      <List key={id}>
+                        <Link
+                          href={{
+                            pathname: "/with_genres/movie/genres",
+                            query: {
+                              gen: id,
+                            },
+                          }}
+                        >
+                          <a>{name}</a>
+                        </Link>
+                      </List>
+                    );
+                  })}
+                </GenresContainer>
               </Li>
             </ul>
             {/* <Categories /> */}
@@ -90,6 +151,7 @@ const NavMobile = () => {
             onClick={() => {
               setActiveSearch(!activeSearch);
               setActiveMenu(false);
+              setActiveGen(false);
             }}
             size="4rem"
             margin="0 1rem 0 0"
