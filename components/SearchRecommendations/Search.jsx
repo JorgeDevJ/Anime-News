@@ -6,7 +6,7 @@ import CardItemRecor from "./CardItemRecor";
 import { DotPulse } from "@uiball/loaders";
 const Container = styled.form`
   width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 10000;
   /* background: rgba(43, 43, 43, 0.42);
   backdrop-filter: blur(3px); */
