@@ -13,6 +13,10 @@ const ContainerFooter = styled.footer`
   & > span {
     color: var(--text);
     margin: 0 0 15px 0;
+    font-size: 20px;
+  }
+  & > svg {
+   max-width: 250px;
   }
 `;
 const Footer = () => {

@@ -18,21 +18,21 @@ const Cont = styled.div`
 `;
 const InfoMovie = styled.div`
   color: var(--text);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: ${props => props.direction};
-  text-align: ${props => props.center};
+  
 `;
 const Title = styled.h3`
   font-size: 15px;
   color: var(--text-dark);
+  @media (min-width: 700px) {
+    font-size: 18px;
+  }
 `;
 export const RatingData = styled.span`
   color: var(--color-medium);
   font-weight: 600;
   display: flex;
-  font-size: 15px;
+  font-size: 16px;
+  
   align-items: center;
   margin: ${(props) => props.margin};
 `;

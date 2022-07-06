@@ -1,4 +1,4 @@
-import React from "react";
+/* import React from "react";
 import Image from "next/image";
 import { urlImage } from "../CardMovie";
 import { CategoriesItems, List } from "../Categories";
@@ -28,7 +28,7 @@ const MainContent = ({ poster_path, title, genres, overview, cast }) => {
   );
 };
 
-export default MainContent;
+export default MainContent; */
 
           {/* <CategoriesItems>
             {genres === undefined ? (

@@ -23,7 +23,7 @@ export const List = styled(SplideSlide)`
     font-weight: 500;
   }
 `;
-export const CategoriesItems = ({children})=>{
+export const CategoriesItems = ({children, direc, h})=>{
   return(
     <Splide
         options={{
@@ -33,6 +33,8 @@ export const CategoriesItems = ({children})=>{
           arrows: false,
           pagination: false,
           fixedWidth: "auto",
+          /* direction: direc,
+          height: h */
         }}
       >
         {children}

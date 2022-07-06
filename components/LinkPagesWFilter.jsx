@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import useLocalStorage from "use-local-storage";
 import styled from "styled-components";
 import { useGeneralData } from "../hooks/useGetDataGeneral";
 import CardMovie from "./CardMovie";
@@ -19,6 +20,15 @@ export const Grid = styled.div`
   grid-template-rows: 1fr;
   grid-column-gap: 15px;
   grid-row-gap: 10px;
+  @media(max-width: 400px){
+    grid-template-columns: repeat(1,1fr);
+  }
+  @media(min-width: 900px){
+    grid-template-columns: repeat(3,1fr);
+  }
+  @media(min-width: 1100px){
+    grid-template-columns: repeat(4,1fr);
+  }
 `;
 const Button = styled.button`
   outline: none;
@@ -33,8 +43,8 @@ const Button = styled.button`
 `;
 const ContainerButtons = styled.div`
   display: flex;
-  justify-content: center;
-  margin: 0 0 20px 0;
+  justify-content: space-evenly;
+  margin: 20px 0;
 `;
 const optionsMovie = [
   { value: "popularity.desc", label: "Popularity" },
@@ -52,6 +62,7 @@ const DataWithFilter = ({ title, url, path, type }) => {
   const [selectedValue, setSelectedValue] = useState("popularity.desc");
   const [page, setPage] = useState(1);
   const router = useRouter();
+  const r = useRef(null)
   const handleChange = (e) => {
     setSelectedValue(e.value);
     setPage(1);
@@ -75,12 +86,9 @@ const DataWithFilter = ({ title, url, path, type }) => {
           isSearchable={false}
           options={type === "movie" ? optionsMovie : optionsTv}
           onChange={handleChange}
+          ref={r}
         />
       </TitleSelect>
-      <ContainerButtons>
-        <Button visible={page === 1 ? "none" : "block"} margin="0 1rem 0 0" onClick={() => setPage(page - 1)}>Page {page - 1}</Button>
-        <Button onClick={() => setPage(page + 1)}>Page {page + 1} </Button>
-      </ContainerButtons>
       <Grid>
         {data.map(
           ({ name, title, poster_path, id, media_type, vote_average }) => {
@@ -96,11 +104,15 @@ const DataWithFilter = ({ title, url, path, type }) => {
                 id={id}
                 type={type}
                 loader={loader}
-              />
+                />
             );
           }
         )}
       </Grid>
+                <ContainerButtons>
+                  <Button visible={page === 1 ? "none" : "block"} margin="0 1rem 0 0" onClick={() => setPage(page - 1)}>Page {page - 1}</Button>
+                  <Button onClick={() => setPage(page + 1)}>Page {page + 1} </Button>
+                </ContainerButtons>
     </Container>
   );
 };

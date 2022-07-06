@@ -6,6 +6,7 @@ import { SplideSlide } from "@splidejs/react-splide";
 import Person from "../../public/person.png";
 import styled from "styled-components";
 import Link from "next/link";
+import { useWindowSize } from "../../hooks/useWindows";
 const Card = styled(SplideSlide)`
   display: flex;
   justify-content: center;
@@ -22,12 +23,16 @@ const Card = styled(SplideSlide)`
     color: var(--text-dark);
     font-weight: 500;
   }
+   @media(min-width: 990px){
+    max-width: 70rem !important;
+  } 
   
 `;
 
 const Actor = ({ cast }) => {
+  const { width } = useWindowSize()
   return (
-    <CategoriesItems>
+    <CategoriesItems /* direc={width >= 900 ? "ttb"  : null} h={width >= 900 ? "500px"  : "0"} */>
       
       {cast.map(({ name, profile_path, id, character }) => {
         return (

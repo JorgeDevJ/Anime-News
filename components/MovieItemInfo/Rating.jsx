@@ -12,7 +12,7 @@ const RatingMain = ({ value }) => {
       <Rating
         emptySymbol={
           <i
-            className="bx bxs-star-half"
+            className="bx bx-star"
             style={{
               color: "var(--secondary)",
               fontSize/*  */: 18,

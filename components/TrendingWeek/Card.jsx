@@ -4,6 +4,7 @@ import Link from "next/link";
 import { urlImage } from "../CardMovie";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { LoaderCard } from "../CardMovie";
+import { useWindowSize } from "../../hooks/useWindows";
 import styled from "styled-components";
 const ContainerCard = styled.div`
   position: absolute;
@@ -11,16 +12,13 @@ const ContainerCard = styled.div`
   background: linear-gradient(0deg, #2d2d4e 2.85%, rgba(45, 45, 78, 0) 97.38%);
   border-radius: 0px 0px 10px 10px;
   width: 100%;
-  & > h3 {
-    color: var(--text);
-    font-size: 16px;
-  }
+  color: var(--text);
+  font-size: 16px;
   padding: 1.5rem;
-  & > h3 {
-    color: var(--text);
-    font-size: 16px;
+  @media (min-width: 700px) {
+    font-size: 23px;
+    padding: 2rem;
   }
-  padding: 1rem;
 `;
 const List = styled(SplideSlide)`
   display: flex;
@@ -32,20 +30,25 @@ const List = styled(SplideSlide)`
 `;
 const ButtonWatch = styled.button`
   background-color: var(--primary);
-  
   border: none;
   outline: none;
   padding: 6px 11px;
-  font-size: 14px;
+  font-size: 16px;
   text-align: center;
   border-radius: 100px;
   color: var(--text);
   margin: 5px 0 0 0;
-  &>a{
+  & > a {
     display: flex;
+    align-items: center;
+  }
+  @media (min-width: 700px) {
+    font-size: 20px;
+    padding: 10px 15px;
   }
 `;
 const Card = ({ nameMovie, srcImage, vote, id, name, type, loader }) => {
+  const { width } = useWindowSize();
   return (
     <List>
       {loader ? (
@@ -58,8 +61,8 @@ const Card = ({ nameMovie, srcImage, vote, id, name, type, loader }) => {
                 className="image"
                 src={`${urlImage}${srcImage}`}
                 alt={name}
-                width={338}
-                height={174}
+                width={width >= 700 ? 800 : 338}
+                height={width >= 700 ? 400 : 174}
                 placeholder="blur"
                 blurDataURL
               />
@@ -78,7 +81,7 @@ const Card = ({ nameMovie, srcImage, vote, id, name, type, loader }) => {
                     className="bx bx-play"
                     style={{
                       color: "var(--text)",
-                      fontSize: 17,
+                      fontSize: 25,
                     }}
                   ></i>
                   Watch

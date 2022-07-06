@@ -13,9 +13,15 @@ import Actor from "../../components/MovieItemInfo/Actor";
 import Recommendations from "../../components/MovieItemInfo/Recommendation";
 const ContainerMain = styled.main`
   padding: 0 var(--padding-separate-lr);
-  & > h2 {
+  h2 {
     font-weight: 300;
     margin: 1rem 0 0 0;
+  }
+  
+  @media(min-width: 990px){
+    display : flex;
+    justify-content: center;
+    
   }
 `;
 const ContImage = styled.div`
@@ -23,15 +29,26 @@ const ContImage = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   .image {
     border-radius: 10px;
   }
+  @media(min-width: 900px){
+    margin: 0 2rem;
+  }
 `;
 const ContTitleData = styled.div`
+@media(min-width: 990px){
+  width: 50%;
+}
   & > h1, h2 {
     font-weight: 300;
   }
+  @media(min-width: 990px){
+    h1 {
+      font-size: 50px;
+    }
+  }
+
   & > h2 {
     margin: 1rem 0 1rem 0;
   }
@@ -48,20 +65,10 @@ const ContTitleAndRuntime = styled.div`
     font-weight: 500;
   }
 `;
-const Button = styled.button`
-  background-color: var(--primary);
-  border: none;
-  outlin: none;
-  color: var(--text);
-  font-weight: 400;
-  font-family: var(--karla);
-  display: flex;
-  align-items: center;
-  padding: 7px 15px;
-  font-size: 22px;
-  text-align: center;
-  border-radius: 100px;
-  margin: 0;
+const ContainerActors = styled.div`
+@media(min-width: 990px){
+  display: block;
+}
 `;
 const IdMovie = () => {
   const [movie, cast, loader] = useGetExactMovie();
@@ -138,9 +145,11 @@ const IdMovie = () => {
             )}
           </CategoriesItems>
 
-        </ContTitleData>
+        <ContainerActors>
         <h2>Cast</h2>
         <Actor cast={cast}/>
+        </ContainerActors>
+        </ContTitleData>
       </ContainerMain>
       <Recommendations type="movie" id={query.id_movie}/>
     </IndexLayaut>
