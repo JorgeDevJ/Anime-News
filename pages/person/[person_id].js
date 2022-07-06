@@ -12,6 +12,7 @@ import { CategoriesItems, List } from "../../components/Categories";
 import Link from "next/link";
 import { DotPulse } from "@uiball/loaders";
 import CardMovie from "../../components/CardMovie";
+import { useWindowSize } from "../../hooks/useWindows";
 const ContainerMain = styled.main`
   padding: 0 var(--padding-separate-lr);
   & > h2 {
@@ -30,7 +31,8 @@ const ContImage = styled.div`
   }
 `;
 const ContTitleData = styled.div`
-  & > h1, h2 {
+  & > h1,
+  h2 {
     font-weight: 300;
   }
   & > h2 {
@@ -69,6 +71,7 @@ const Person = () => {
   const [loader, setLoader] = useState(false);
   const [data, setData] = useState([]);
   const { query } = useRouter();
+  const { width } = useWindowSize();
   const PersonData = async () => {
     try {
       setLoader(true);
@@ -83,11 +86,11 @@ const Person = () => {
   const MoviesAlso = async () => {
     try {
       setLoader(true);
-      const { data } = await movieApi.get(`/person/${query.person_id}`,{
-        params:{
+      const { data } = await movieApi.get(`/person/${query.person_id}`, {
+        params: {
           sort_by: "popularity.desc",
           with_cast: query.person_id,
-        }
+        },
       });
       const response = data.results;
       setLoader(false);
@@ -97,16 +100,11 @@ const Person = () => {
     }
   };
   useEffect(() => {
-    PersonData()
-    MoviesAlso()
+    PersonData();
+    MoviesAlso();
   }, [query.person_id]);
-  const {
-    profile_path,
-    name,
-    known_for_department,
-    birthday,
-    biography
-  } = person;
+  const { profile_path, name, known_for_department, birthday, biography } =
+    person;
 
   return (
     <IndexLayaut title={name}>
@@ -116,8 +114,8 @@ const Person = () => {
           <Image
             src={`${urlImage}${profile_path}`}
             alt={name}
-            width="500"
-            height="750"
+            width={width >= 800 ? 300 : 500}
+            height={width >= 800 ? 450 : 750}
             className="image"
             placeholder="blur"
             blurDataURL
