@@ -12,6 +12,7 @@ const Container = styled.form`
   backdrop-filter: blur(3px); */
   padding: 0 var(--padding-separate-lr) 85vh;
   top: 85px;
+  left: 0;
   display: ${(props) => props.visibleSearch};
 `;
 const Input = styled.input`
