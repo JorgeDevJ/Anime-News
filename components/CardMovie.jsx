@@ -10,6 +10,7 @@ import { Momentum } from "@uiball/loaders";
 
 const ContainerCard = styled.div`
   display: flex;
+ 
 `;
 const Cont = styled.div`
   .image {

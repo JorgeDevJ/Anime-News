@@ -24,6 +24,10 @@ const List = styled(SplideSlide)`
   display: flex;
   margin: 0;
   position: relative;
+  transition: transform ease-in-out .2s;
+  &:hover{
+    transform: scale(0.98);
+  }
   .image {
     border-radius: 10px;
   }

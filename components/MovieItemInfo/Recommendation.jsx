@@ -9,6 +9,10 @@ import styled from "styled-components";
 export const List = styled(SplideSlide)`
   display: flex;
   width: 24rem !important;
+  transition: transform ease-in-out .2s;
+  &:hover{
+    transform: scale(0.98);
+  }
 `;
 const Recommendations = ({id, type}) => {
   const [data, loader] = useGeneralData(`/${type}/${id}/recommendations`, id);

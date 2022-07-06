@@ -26,6 +26,10 @@ export const Section = styled.section`
 export const List = styled(SplideSlide)`
   display: flex;
   width: 24rem !important;
+  transition: transform ease-in-out .2s;
+  &:hover{
+    transform: scale(0.95);
+  }
 `;
 const Popular = () => {
   const [data, loader] = useGeneralData("/movie/popular");

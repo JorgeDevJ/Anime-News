@@ -108,7 +108,7 @@ const NavStart = () => {
   }
   return (
     <>
-    {width >= 800 ? <NavMobile/> : <NavDesk/>}
+    {width >= 900 ? <NavMobile/> : <NavDesk/>}
      
     </>
   );

@@ -44,7 +44,7 @@ const GenresContainer = styled.div`
   /* height: 9rem; */
   display: ${(props) => props.visible};
   flex-wrap: wrap;
-  width: 60rem;
+  width: 55rem;
   z-index: 1000;
   /* height: 17rem; */
   background: var(--bg);
@@ -53,6 +53,7 @@ const GenresContainer = styled.div`
   line-height: 32px;
   border-radius: 10px;
   top: 63px;
+  left: 200px;
 `;
 const List = styled.div`
   background-color: var(--primary);
@@ -63,6 +64,10 @@ const List = styled.div`
   text-align: center;
   border-radius: 100px;
   margin: 10px 10px 10px 0;
+  transition: transform ease-in-out .2s;
+  &:hover{
+    transform: scale(0.95);
+  }
   & > a {
     color: var(--text);
     font-weight: 500;
