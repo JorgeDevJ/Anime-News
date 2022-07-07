@@ -12,6 +12,7 @@ const Container = styled.form`
   backdrop-filter: blur(3px); */
   padding: 0 var(--padding-separate-lr);
   top: 85px;
+  left: 0;
   display: ${(props) => props.visibleSearch};
 `;
 const Input = styled.input`
@@ -33,6 +34,7 @@ box-shadow: var(--shadow-list);
   }
   `;
 const ContainerRecommendation = styled.div`
+<<<<<<< HEAD
 display: ${(props) => props.visible};
 box-shadow: var(--shadow-list);
 margin: 1rem 0;
@@ -43,6 +45,27 @@ background: var(--bg);
 overflow: hidden;
 height: 250px;
 overflow-y: auto;
+=======
+  display: ${(props) => props.visible};
+  box-shadow: var(--shadow-list);
+  margin: 1rem 0;
+  padding: 2rem;
+  border-radius: 10px;
+  line-height: 30px;
+  background: var(--bg);
+  overflow: hidden;
+  height: 250px;
+  overflow-y: auto;
+  &::after{
+    position: absolute;
+    content: " ";
+    border: 1px solid var(--primary);
+    width: 100%;
+    opacity: 0.4;
+    bottom: 0;
+    border-radius: 10px;
+  }
+>>>>>>> 6203e5b15a1188cfc5da093da592c797520f5065
 `;
 const Search = ({ valuebool, fun }) => {
   const [data, setData] = useState([]);
