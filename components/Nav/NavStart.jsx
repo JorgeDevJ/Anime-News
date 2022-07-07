@@ -54,6 +54,8 @@ const NavStart = () => {
   /*comp desk */
   const NavDesk = () =>{
     return(
+      <>
+      
       <ContainerNav>
       <div>
         <Link href="/">
@@ -102,8 +104,9 @@ const NavStart = () => {
           className="bx bx-menu-alt-right"
         ></Icon>
       </ContItems>
-      <Search valuebool={activeSearch} />
     </ContainerNav>
+    <Search valuebool={activeSearch} />
+      </>
     )
   }
   return (
