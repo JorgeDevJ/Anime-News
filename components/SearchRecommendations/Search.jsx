@@ -44,6 +44,15 @@ const ContainerRecommendation = styled.div`
   overflow: hidden;
   height: 250px;
   overflow-y: auto;
+  &::after{
+    position: absolute;
+    content: " ";
+    border: 1px solid var(--primary);
+    width: 100%;
+    opacity: 0.4;
+    bottom: 0;
+    border-radius: 10px;
+  }
 `;
 const Search = ({ valuebool, fun }) => {
   const [data, setData] = useState([]);

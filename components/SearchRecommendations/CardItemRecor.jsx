@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Link from "next/link";
 const ContainerCard = styled.article`
   display: flex;
+  position: relative;
+    padding: 10px 0;
   .image{
     border-radius: 5px !important;
   }
