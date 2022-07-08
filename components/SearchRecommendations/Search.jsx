@@ -10,10 +10,13 @@ const Container = styled.form`
   z-index: 10000;
   /* background: rgba(43, 43, 43, 0.42);
   backdrop-filter: blur(3px); */
-  padding: 0 var(--padding-separate-lr);
+  padding: 85px var(--padding-separate-lr);
   top: 85px;
   left: 0;
   display: ${(props) => props.visibleSearch};
+  backdrop-filter: blur(5px);
+  background: #000000ad;
+  height: 100%;
 `;
 const Input = styled.input`
 width: 100%;
@@ -42,7 +45,7 @@ border-radius: 10px;
 line-height: 30px;
 background: var(--bg);
 overflow: hidden;
-height: 250px;
+height: 230px;
 overflow-y: auto;
 
 `;
