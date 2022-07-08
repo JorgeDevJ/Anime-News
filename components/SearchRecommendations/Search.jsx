@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { movieApi } from "../../services/api/movieApi";
 import CardItemRecor from "./CardItemRecor";
 import { DotPulse } from "@uiball/loaders";
@@ -10,12 +10,10 @@ const Container = styled.form`
   z-index: 10000;
   /* background: rgba(43, 43, 43, 0.42);
   backdrop-filter: blur(3px); */
-  padding: 85px var(--padding-separate-lr);
+  padding: 0 var(--padding-separate-lr);
   top: 85px;
   left: 0;
   display: ${(props) => props.visibleSearch};
-  backdrop-filter: blur(5px);
-  background: #000000ad;
   height: 100%;
 `;
 const Input = styled.input`
@@ -53,17 +51,17 @@ const Search = ({ valuebool, fun }) => {
   const [data, setData] = useState([]);
   const [loader, setLoader] = useState(false);
   const [value, setValue] = useState();
+  const d = useRef("")
   const router = useRouter();
   const SearchData = (e) => {
-    const query = e.target.value;
-    setValue(query);
+    setValue(d.current.value);
   };
   const GetMovieSearch = async () => {
     try {
       setLoader(true);
       const { data } = await movieApi.get("/search/multi", {
         params: {
-          query: value,
+          query: d.current.value,
           include_adult: true,
         },
       });
@@ -79,7 +77,7 @@ const Search = ({ valuebool, fun }) => {
   }, [value]);
   return (
     <Container
-      visibleSearch={valuebool ? "block" : "none"}
+      visibleSearch={valuebool === true ? "block" : "none"}
       onSubmit={(e) => e.preventDefault()}
     >
       <Input
@@ -87,8 +85,9 @@ const Search = ({ valuebool, fun }) => {
         type={"text"}
         placeholder="Search movies and series"
         autoFocus
+        ref={d}
       />
-      <ContainerRecommendation visible={value === "" ? "none" : "block"}>
+      <ContainerRecommendation visible={d.current.value === "" ? "none" : "block"}>
         {data.map(
           ({ name, title, vote_average, id, poster_path, media_type }) => {
             return (
