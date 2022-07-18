@@ -30,13 +30,15 @@ export const Grid = styled.div`
   }
 `;
 const Button = styled.button`
-  outline: none;
-  border: none;
-  background-color: var(--primary);
-  color: var(--text);
-  padding: 1rem 2rem;
-  border-radius: 5px;
-  font-size: 16px;
+outline: none;
+border: none;
+background-color: #9a9aea61;
+border: 2px solid var(--primary);
+color: #2d2d4e;
+padding: 1rem 2rem;
+border-radius: 5px;
+font-size: 17px;
+font-weight: 600;
   display: ${props => props.visible};
   margin: ${props => props.margin};
 `;
