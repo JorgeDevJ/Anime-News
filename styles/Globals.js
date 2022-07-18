@@ -66,4 +66,15 @@ li{
     justify-content: center;
     align-items: center;
   }
+  ::-webkit-scrollbar {
+    width: 15px;
+  }
+  ::-webkit-scrollbar-thumb {
+  background-color: #2d2d4e;
+  }
+  ::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track {
+    border: 4px solid transparent;
+    background-clip: padding-box;
+    border-radius: 8px;
+  }
 `;
