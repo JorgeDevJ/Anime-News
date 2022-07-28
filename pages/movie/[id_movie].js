@@ -34,6 +34,7 @@ export const ContImage = styled.div`
   }
   @media(min-width: 900px){
     margin: 0 2rem;
+    width: 32rem;
   }
 `;
 export const ContTitleData = styled.div`
