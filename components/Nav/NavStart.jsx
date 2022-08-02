@@ -2,6 +2,9 @@ import { useState, useEffect } from "react";
 import { useWindowSize } from "../../hooks/useWindows";
 import styled from "styled-components";
 import Link from "next/link";
+import Image from "next/image";
+import { useUser } from "@auth0/nextjs-auth0";
+import { ButtonLogin } from "./NavMobile";
 import Switch from "./Switch";
 import Categories, { CategoriesItems } from "../Categories";
 import Search from "../SearchRecommendations/Search";
@@ -41,80 +44,87 @@ const Li = styled.li`
     color: var(--text-dark);
   }
 `;
+
 //data Links
 const NavStart = () => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [activeSearch, setActiveSearch] = useState(false);
-  const {width} = useWindowSize()
+  const { user, error, isLoading } = useUser();
+  const { width } = useWindowSize();
   useEffect(() => {
     setActiveMenu(false);
     setActiveSearch(false);
   }, []);
 
   /*comp desk */
-  const NavDesk = () =>{
-    return(
+  const NavDesk = () => {
+    return (
       <>
-      
-      <ContainerNav>
-      <div>
-        <Link href="/">
-          <a>
-            <Icon className="bx bxs-cube bx-lg" size="6rem"></Icon>
-          </a>
-        </Link>
-        <ContainerListMobile visible={activeMenu ? "unset" : "none"}>
-          <ul>
-            <Li>
-              <Link href={"/"}>
-                <a>All</a>
-              </Link>
-            </Li>
-            <Li>
-              <Link href={"/movies"}>
-                <a>Movies</a>
-              </Link>
-            </Li>
-            <Li>
-              <Link href={"/series"}>
-                <a>Series</a>
-              </Link>
-            </Li>
-          </ul>
-          <Categories />
-        </ContainerListMobile>
-      </div>
-      <ContItems>
-        {/*deberia ir un switch */}
-        <Icon
-          onClick={() => {
-            setActiveSearch(!activeSearch);
-            setActiveMenu(false);
-          }}
-          size="4rem"
-          margin="0 1rem 0 0"
-          className="bx bx-search"
-        ></Icon>
-        <Icon
-          onClick={() => {
-            setActiveMenu(!activeMenu);
-            setActiveSearch(false);
-          }}
-          size="4rem"
-          className="bx bx-menu-alt-right"
-        ></Icon>
-      </ContItems>
-    </ContainerNav>
-    <Search valuebool={activeSearch} />
+        <ContainerNav>
+          <div>
+            <Link href="/">
+              <a>
+                <Icon className="bx bxs-cube bx-lg" size="6rem"></Icon>
+              </a>
+            </Link>
+            <ContainerListMobile visible={activeMenu ? "unset" : "none"}>
+              <ul>
+                <Li>
+                  <Link href={"/"}>
+                    <a>All</a>
+                  </Link>
+                </Li>
+                <Li>
+                  <Link href={"/movies"}>
+                    <a>Movies</a>
+                  </Link>
+                </Li>
+                <Li>
+                  <Link href={"/series"}>
+                    <a>Series</a>
+                  </Link>
+                </Li>
+                <Li>
+                  {user ? (
+                    <Link href={"/me"}>
+                      <a>Me Profile</a>
+                    </Link>
+                  ) : (
+                    <Link href="/api/auth/login">
+                      <a>Login</a>
+                    </Link>
+                  )}
+                </Li>
+              </ul>
+              <Categories />
+            </ContainerListMobile>
+          </div>
+          <ContItems>
+            {/*deberia ir un switch */}
+            <Icon
+              onClick={() => {
+                setActiveSearch(!activeSearch);
+                setActiveMenu(false);
+              }}
+              size="4rem"
+              margin="0 1rem 0 0"
+              className="bx bx-search"
+            ></Icon>
+            <Icon
+              onClick={() => {
+                setActiveMenu(!activeMenu);
+                setActiveSearch(false);
+              }}
+              size="4rem"
+              className="bx bx-menu-alt-right"
+            ></Icon>
+          </ContItems>
+        </ContainerNav>
+        <Search valuebool={activeSearch} />
       </>
-    )
-  }
-  return (
-    <>
-    {width >= 900 ? <NavMobile/> : <NavDesk/>}
-     
-    </>
-  );
+    );
+  };
+  return <>{width >= 900 ? <NavMobile /> : <NavDesk />}</>;
 };
 
 export default NavStart;

@@ -10,6 +10,8 @@ const ContainerFooter = styled.footer`
   align-items: center;
   justify-content: center;
   margin: 2rem 0 0 0;
+  position: absolute;
+  width: 100%;
   & > span {
     color: var(--text);
     margin: 0 0 15px 0;

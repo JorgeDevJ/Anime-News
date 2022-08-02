@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import IndexLayaut from "../layaut/IndexLayaut";
 import { useGetExactMovie } from "../../hooks/useGetExactMovie";
 import { useRouter } from "next/router";
@@ -11,17 +11,17 @@ import Link from "next/link";
 import { DotPulse } from "@uiball/loaders";
 import Actor from "../../components/MovieItemInfo/Actor";
 import Recommendations from "../../components/MovieItemInfo/Recommendation";
+import { getMovieEmbed } from "../../services/api/movieApi";
 export const ContainerMain = styled.main`
   padding: 0 var(--padding-separate-lr);
   h2 {
     font-weight: 300;
     margin: 1rem 0 0 0;
   }
-  
-  @media(min-width: 990px){
-    display : flex;
+
+  @media (min-width: 990px) {
+    display: flex;
     justify-content: center;
-    
   }
 `;
 export const ContImage = styled.div`
@@ -32,18 +32,20 @@ export const ContImage = styled.div`
   .image {
     border-radius: 10px;
   }
-  @media(min-width: 900px){
+  @media (min-width: 900px) {
     margin: 0 2rem;
+    width: 30rem;
   }
 `;
 export const ContTitleData = styled.div`
-@media(min-width: 990px){
-  width: 50%;
-}
-  & > h1, h2 {
+  @media (min-width: 990px) {
+    width: 50%;
+  }
+  & > h1,
+  h2 {
     font-weight: 300;
   }
-  @media(min-width: 990px){
+  @media (min-width: 990px) {
     h1 {
       font-size: 50px;
     }
@@ -66,13 +68,14 @@ export const ContTitleAndRuntime = styled.div`
   }
 `;
 export const ContainerActors = styled.div`
-@media(min-width: 990px){
-  display: block;
-}
+  @media (min-width: 990px) {
+    display: block;
+  }
 `;
 const IdMovie = () => {
   const [movie, cast, loader] = useGetExactMovie();
   const [isOpen, setOpen] = useState(false);
+  const [movieE, setMovieE] = useState([]);
   const { query } = useRouter();
   const {
     poster_path,
@@ -86,15 +89,14 @@ const IdMovie = () => {
     vote_average,
     runtime,
     original_title,
-    id
+    id,
+    imdb_id
   } = movie;
-
   return (
     <IndexLayaut title={title}>
-      
       <ContainerMain>
         {/* image */}
-         <ContImage>
+        <ContImage>
           <Image
             src={`${urlImage}${poster_path}`}
             alt={title}
@@ -106,7 +108,7 @@ const IdMovie = () => {
           />
           <RatingMain value={vote_average} />
         </ContImage>
-       
+
         {/* image */}
         {/* info */}
         <ContTitleData>
@@ -131,12 +133,14 @@ const IdMovie = () => {
               genres.map(({ id, name }) => {
                 return (
                   <List key={id}>
-                    <Link  href={{
-                        pathname: '/with_genres/movie/genres',
+                    <Link
+                      href={{
+                        pathname: "/with_genres/movie/genres",
                         query: {
                           gen: id,
                         },
-                      }}>
+                      }}
+                    >
                       <a>{name}</a>
                     </Link>
                   </List>
@@ -145,13 +149,13 @@ const IdMovie = () => {
             )}
           </CategoriesItems>
 
-        <ContainerActors>
-        <h2>Cast</h2>
-        <Actor cast={cast}/>
-        </ContainerActors>
+          <ContainerActors>
+            <h2>Cast</h2>
+            <Actor cast={cast} />
+          </ContainerActors>
         </ContTitleData>
       </ContainerMain>
-      <Recommendations type="movie" id={query.id_movie}/>
+      <Recommendations type="movie" id={query.id_movie} />
     </IndexLayaut>
   );
 };

@@ -9,7 +9,7 @@ const nextConfig = {
     return config
   },
   images: {
-    domains: ["image.tmdb.org"],
+    domains: ["image.tmdb.org", "lh3.googleusercontent.com", "pbs.twimg.com", "s.gravatar.com"],
   },
   reactStrictMode: true,
 };

@@ -19,26 +19,28 @@ export const Grid = styled.div`
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 25px;
   grid-row-gap: 25px;
-  @media(max-width: 300px){
-    grid-template-columns: repeat(1,1fr);
+  @media (max-width: 300px) {
+    grid-template-columns: repeat(1, 1fr);
   }
-  @media(min-width: 900px){
-    grid-template-columns: repeat(3,1fr);
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
   }
-  @media(min-width: 1100px){
-    grid-template-columns: repeat(4,1fr);
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 const Button = styled.button`
   outline: none;
   border: none;
-  background-color: var(--primary);
-  color: var(--text);
+  background-color: #9a9aea61;
+  border: 2px solid var(--primary);
+  color: #2d2d4e;
   padding: 1rem 2rem;
   border-radius: 5px;
-  font-size: 16px;
-  display: ${props => props.visible};
-  margin: ${props => props.margin};
+  font-size: 17px;
+  font-weight: 600;
+  display: ${(props) => props.visible};
+  margin: ${(props) => props.margin};
 `;
 const ContainerButtons = styled.div`
   display: flex;
@@ -61,7 +63,7 @@ const DataWithFilter = ({ title, url, path, type }) => {
   const [selectedValue, setSelectedValue] = useState("popularity.desc");
   const [page, setPage] = useState(1);
   const router = useRouter();
-  const r = useRef(null)
+  const r = useRef(null);
   const handleChange = (e) => {
     setSelectedValue(e.value);
     setPage(1);
@@ -103,15 +105,21 @@ const DataWithFilter = ({ title, url, path, type }) => {
                 id={id}
                 type={type}
                 loader={loader}
-                />
+              />
             );
           }
         )}
       </Grid>
-                <ContainerButtons>
-                  <Button visible={page === 1 ? "none" : "block"} margin="0 1rem 0 0" onClick={() => setPage(page - 1)}>Page {page - 1}</Button>
-                  <Button onClick={() => setPage(page + 1)}>Page {page + 1} </Button>
-                </ContainerButtons>
+      <ContainerButtons>
+        <Button
+          visible={page === 1 ? "none" : "block"}
+          margin="0 1rem 0 0"
+          onClick={() => setPage(page - 1)}
+        >
+          Page {page - 1}
+        </Button>
+        <Button onClick={() => setPage(page + 1)}>Page {page + 1} </Button>
+      </ContainerButtons>
     </Container>
   );
 };

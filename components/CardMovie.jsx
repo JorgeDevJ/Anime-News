@@ -6,11 +6,11 @@ import NotFound from "../public/notfound.jpg";
 import Link from "next/link";
 import LazyLoad from "react-lazyload";
 import { Momentum } from "@uiball/loaders";
+
 //style
 
 const ContainerCard = styled.div`
   display: flex;
- 
 `;
 const Cont = styled.div`
   .image {
@@ -19,7 +19,6 @@ const Cont = styled.div`
 `;
 const InfoMovie = styled.div`
   color: var(--text);
-  
 `;
 const Title = styled.h3`
   font-size: 15px;
@@ -33,7 +32,7 @@ export const RatingData = styled.span`
   font-weight: 600;
   display: flex;
   font-size: 16px;
-  
+
   align-items: center;
   margin: ${(props) => props.margin};
 `;
@@ -46,51 +45,61 @@ export const LoaderCard = () => {
     </div>
   );
 };
-const CardMovie = ({ nameMovie, srcImage, vote, id, name, type, loader, direction_i, center_i }) => {
+const CardMovie = ({
+  nameMovie,
+  srcImage,
+  vote,
+  id,
+  name,
+  type,
+  loader,
+  direction_i,
+  center_i,
+}) => {
   return (
     <ContainerCard>
-      {loader ? (
-        <LoaderCard />
-      ) : (
-        <Cont>
-          <Link href={`/${type}/${id}`}>
-            <a>
-              <Image
-                className="image"
-                src={
-                  srcImage === null || srcImage === undefined
-                    ? NotFound
-                    : `${urlImage}${srcImage}`
-                }
-                alt={nameMovie}
-                width={500}
-                height={750}
-                placeholder="blur"
-                blurDataURL
-                priority
-              />
-            </a>
-          </Link>
-          <InfoMovie direction={direction_i} center={center_i}>
-            <Link href={`/${type}/${id}`}>
-              <a>
-                <Title>{nameMovie === undefined ? name : nameMovie}</Title>
-              </a>
-            </Link>
-            <RatingData>
-              {vote}{" "}
-              <i
-                className="bx bxs-star"
-                style={{
-                  color: "var(--color-medium)",
-                  fontSize: 15,
-                }}
-              ></i>
-            </RatingData>
-          </InfoMovie>
-        </Cont>
-      )}
-    </ContainerCard>
+  {loader ? (
+    <LoaderCard />
+  ) : (
+    <Cont>
+      <Link href={`/${type}/${id}`}>
+        <a>
+          <Image
+            className="image"
+            src={
+              srcImage === null || srcImage === undefined
+                ? NotFound
+                : `${urlImage}${srcImage}`
+            }
+            alt={nameMovie}
+            width={500}
+            height={750}
+            placeholder="blur"
+            blurDataURL
+            priority
+          />
+        </a>
+      </Link>
+      <InfoMovie direction={direction_i} center={center_i}>
+        <Link href={`/${type}/${id}`}>
+          <a>
+            <Title>{nameMovie === undefined ? name : nameMovie}</Title>
+          </a>
+        </Link>
+        <RatingData>
+          {vote}{" "}
+          <i
+            className="bx bxs-star"
+            style={{
+              color: "var(--color-medium)",
+              fontSize: 15,
+            }}
+          ></i>
+        </RatingData>
+      </InfoMovie>
+    </Cont>
+  )}
+</ContainerCard>
   );
 };
 
@@ -103,3 +112,5 @@ CardMovie.propTypes = {
 };
 
 export default CardMovie;
+
+

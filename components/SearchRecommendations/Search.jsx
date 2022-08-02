@@ -13,8 +13,8 @@ const Container = styled.form`
   padding: 0 var(--padding-separate-lr);
   top: 85px;
   left: 0;
-  display: ${(props) => props.visibleSearch};
   height: 100%;
+  display: ${(props) => props.visibleSearch};
 `;
 const Input = styled.input`
 width: 100%;

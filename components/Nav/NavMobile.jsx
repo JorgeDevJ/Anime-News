@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { useWindowSize } from "../../hooks/useWindows";
 import styled from "styled-components";
 import Link from "next/link";
+import Image from "next/image";
 import Switch from "./Switch";
 import { genres } from "../../services/data/genres";
-
+import { useUser } from "@auth0/nextjs-auth0";
 import Search from "../SearchRecommendations/Search";
 const ContainerNav = styled.nav`
   padding: 15px var(--padding-separate-lr);
@@ -17,7 +18,14 @@ const Icon = styled.i`
   font-size: ${(props) => props.size} !important;
   margin: ${(props) => props.margin} !important;
 `;
-const ContItems = styled.div``;
+const ContItems = styled.div`
+  display: flex;
+  align-items: center;
+  .image_user {
+    border-radius: 100px !important;
+    border: 2px solid var(--primary) !important;
+  }
+`;
 const ContainerList = styled.div`
   & > ul {
     line-height: 35px;
@@ -64,8 +72,8 @@ const List = styled.div`
   text-align: center;
   border-radius: 100px;
   margin: 10px 10px 10px 0;
-  transition: transform ease-in-out .2s;
-  &:hover{
+  transition: transform ease-in-out 0.2s;
+  &:hover {
     transform: scale(0.95);
   }
   & > a {
@@ -73,11 +81,21 @@ const List = styled.div`
     font-weight: 500;
   }
 `;
+export const ButtonLogin = styled.button`
+  background-color: var(--primary);
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 100px;
+  color: var(--text);
+`;
 //data Links
 const NavMobile = () => {
   const [activeMenu, setActiveMenu] = useState(false);
   const [activeSearch, setActiveSearch] = useState(false);
   const [activeGen, setActiveGen] = useState(false);
+  const { user, error, isLoading } = useUser();
   const { width } = useWindowSize();
   useEffect(() => {
     setActiveMenu(false);
@@ -124,7 +142,7 @@ const NavMobile = () => {
                   style={{
                     color: "var(--text-dark)",
                     fontSize: 16,
-                    margin: "0 0 0 5px"
+                    margin: "0 0 0 5px",
                   }}
                 ></i>
                 <GenresContainer visible={activeGen ? "flex" : "none"}>
@@ -152,6 +170,26 @@ const NavMobile = () => {
         </ContLinks>
         <ContItems>
           {/*deberia ir un switch */}
+          {user ? (
+            <Link href={"/me"}>
+              <a>
+                <Image
+                  className="image_user"
+                  src={user.picture}
+                  width={45}
+                  height={45}
+                  alt={user.name}
+                />
+              </a>
+            </Link>
+          ) : (
+            <ButtonLogin>
+              <Link href="/api/auth/login">
+                <a>Login</a>
+              </Link>
+            </ButtonLogin>
+          )}
+
           <Icon
             onClick={() => {
               setActiveSearch(!activeSearch);
@@ -159,7 +197,7 @@ const NavMobile = () => {
               setActiveGen(false);
             }}
             size="4rem"
-            margin="0 1rem 0 0"
+            margin="0 1rem 0"
             className="bx bx-search"
           ></Icon>
         </ContItems>
