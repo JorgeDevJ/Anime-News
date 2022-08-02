@@ -10,22 +10,22 @@ const Main = styled.main`
   align-items: center;
   flex-direction: column;
   margin: 30vh 0;
-`
-const Title = styled.h1`
-
-`
+`;
+const Title = styled.h1``;
 const User = () => {
   const { user, error, isLoading } = useUser();
   return (
-    <IndexLayaut title={user.nickname}>
-      <Main>
-        <h1>Welcome {user.nickname}</h1>
-      <ButtonLogin>
-        <Link href="/api/auth/logout">
-          <a>Logout</a>
-        </Link>
-      </ButtonLogin>
-      </Main>
+    <IndexLayaut title={"Me"}>
+      {user && (
+        <Main>
+          <h1>Welcome {user.nickname}</h1>
+          <ButtonLogin>
+            <Link href="/api/auth/logout">
+              <a>Logout</a>
+            </Link>
+          </ButtonLogin>
+        </Main>
+      )}
     </IndexLayaut>
   );
 };
