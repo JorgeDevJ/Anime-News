@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const {parsed} = require("dotenv").config();
+const {PHASE_DEVELOPMENT_SERVER} = require("next/constants")
 const nextConfig = {
   webpack(config) {
     config.module.rules.push({
