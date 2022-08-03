@@ -184,9 +184,9 @@ const NavMobile = () => {
             </Link>
           ) : (
             <ButtonLogin>
-
-              <a href="/api/auth/login">Login</a>
-
+              <Link href="/api/auth/login">
+                <a>Login</a>
+              </Link>
             </ButtonLogin>
           )}
 

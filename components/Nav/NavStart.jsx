@@ -90,9 +90,9 @@ const NavStart = () => {
                       <a>Me Profile</a>
                     </Link>
                   ) : (
-
-                    <a href="/api/auth/login">Login</a>
-
+                    <Link href="/api/auth/login">
+                      <a>Login</a>
+                    </Link>
                   )}
                 </Li>
               </ul>
