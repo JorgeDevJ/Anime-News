@@ -16,7 +16,7 @@ const Trending = () => {
   return (
     <Cont>
       <h1>
-        <b>Tending</b> of the Week{" "}
+        <b>Trending</b> of the Week{" "}
       </h1>
       <CategoriesItems>
         {data.map(({ name, title, backdrop_path, id, media_type }) => {
