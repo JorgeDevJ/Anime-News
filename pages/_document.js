@@ -22,7 +22,9 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang='en'>
-        <Head />
+        <Head>
+      <meta name="a.validate.02" content="OrWRteJuw5-k5xmt0R9kvtAlMGQn7701yNsE" />
+      </Head>
         <body>
           <Main />
           <NextScript />
